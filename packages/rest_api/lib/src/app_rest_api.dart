@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:rest_api/rest_api.dart';
 import 'package:rest_api/src/constants/constants.dart';
 
 class AppRestApi {
@@ -27,9 +28,12 @@ class AppRestApi {
             log(e.toString());
           }),
     ]);
+
+    taskApi = TaskApi(_dio);
   }
 
   final String _baseUrl;
   final String _token;
   late final Dio _dio;
+  late final TaskApi taskApi;
 }

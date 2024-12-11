@@ -11,7 +11,7 @@ class AppIntialize {
   static Future<void> execute() async {
     WidgetsFlutterBinding.ensureInitialized();
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    await setupDependencies();
+    setupDependencies();
     Bloc.observer = AppBlocObserver();
     runApp(
       const TaskManagerApp(),

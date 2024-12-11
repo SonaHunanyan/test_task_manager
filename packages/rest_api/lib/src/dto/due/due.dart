@@ -5,7 +5,7 @@ part 'due.g.dart';
 
 @JsonSerializable()
 class DueDto {
-  DueDto({
+  const DueDto({
     required this.date,
     required this.isRecurring,
     required this.datetime,

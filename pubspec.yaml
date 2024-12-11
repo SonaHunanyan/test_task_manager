@@ -1,6 +1,6 @@
 name: test_task_manager
 description: "Task manager application"
-
+publish_to: 'none' 
 
 version: 1.0.0+1
 
@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  rest_api:
+    path: packages/rest_api
 
   cupertino_icons: ^1.0.8
   auto_route: ^9.2.2
