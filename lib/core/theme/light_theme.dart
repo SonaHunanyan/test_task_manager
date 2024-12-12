@@ -19,6 +19,7 @@ final lightTheme = base.copyWith(
     onSurfaceVariant: AppColors.longTextColor,
     tertiaryContainer: Colors.white,
   ),
+  primaryColorLight: Colors.white,
 
   /// Text theme
   textTheme: base.primaryTextTheme.copyWith(

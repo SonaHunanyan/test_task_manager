@@ -22,6 +22,7 @@ final darkTheme = base.copyWith(
     outlineVariant: AppColors.darkSecondaryText,
     tertiaryContainer: AppColors.blackPurple,
   ),
+  primaryColorLight: AppColors.backgroundDark,
 
   /// Text theme
   textTheme: base.primaryTextTheme.copyWith(
