@@ -17,4 +17,20 @@ class TaskRepository implements ITaskRepository {
       return TaskResult$Failure(e, s);
     }
   }
+
+  @override
+  Future<TaskResult<Task>> createTask({
+    required String projectId,
+    required String content,
+  }) async {
+    try {
+      final taskDto = await _taskApi.createTask(
+        projectId: projectId,
+        content: content,
+      );
+      return TaskResult$Success(data: TaskMapper.toTask(taskDto));
+    } catch (e, s) {
+      return TaskResult$Failure(e, s);
+    }
+  }
 }

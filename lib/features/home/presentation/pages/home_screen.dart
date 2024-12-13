@@ -1,9 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 import 'package:test_task_manager/core/constants/app_strings.dart';
 import 'package:test_task_manager/core/extenstions/theme_extenstion.dart';
 import 'package:test_task_manager/core/router/app_router.gr.dart';
+import 'package:test_task_manager/features/tasks/domain/repositories/task_repository.dart';
+import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_bloc.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -15,10 +19,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AutoTabsScaffold(
-      routes: routes,
-      bottomNavigationBuilder: (context, tabsRouter) => ClipRRect(
-        child: BottomNavigationBar(
+    return BlocProvider<TasksBloc>(
+      create: (context) =>
+          TasksBloc(taskRepository: GetIt.I.get<ITaskRepository>()),
+      child: AutoTabsScaffold(
+        routes: routes,
+        bottomNavigationBuilder: (context, tabsRouter) => BottomNavigationBar(
           selectedFontSize: 0.0,
           unselectedFontSize: 0.0,
           iconSize: 0,

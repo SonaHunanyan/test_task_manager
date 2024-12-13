@@ -5,4 +5,9 @@ abstract interface class ITaskRepository {
   const ITaskRepository();
 
   Future<TaskResult<List<Task>>> getTasks();
+
+  Future<TaskResult<Task>> createTask({
+    required String projectId,
+    required String content,
+  });
 }

@@ -3,9 +3,9 @@ sealed class TaskResult<T> {
 }
 
 final class TaskResult$Success<T> extends TaskResult<T> {
-  const TaskResult$Success({this.data});
+  const TaskResult$Success({required this.data});
 
-  final T? data;
+  final T data;
 }
 
 final class TaskResult$Failure<T> extends TaskResult<T> {

@@ -4,4 +4,5 @@ class AppStrings {
   static final tasks = 'tasks'.tr();
   static final failToGetTasks = 'failToGetTasks'.tr();
   static final add = 'add'.tr();
+  static final createTask = 'createTask'.tr();
 }

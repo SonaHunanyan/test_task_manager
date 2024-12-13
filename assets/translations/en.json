@@ -1,5 +1,6 @@
 {
     "tasks": "Tasks",
     "failToGetTasks": "Fail to get tasks",
-    "add": "Add"
+    "add": "Add",
+    "createTask": "Create Task"
 }

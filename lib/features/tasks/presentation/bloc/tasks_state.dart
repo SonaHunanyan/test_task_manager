@@ -9,4 +9,10 @@ class TasksState extends Equatable {
   List<Object?> get props => tasks;
 }
 
-class TasksState$FailToGet extends TasksState {}
+class TasksState$FailToGet extends TasksState {
+  const TasksState$FailToGet();
+}
+
+class TasksState$FailToCreate extends TasksState {
+  const TasksState$FailToCreate({required super.tasks});
+}

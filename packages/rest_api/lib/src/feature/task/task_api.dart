@@ -15,4 +15,16 @@ class TaskApi {
     }
     return tasks;
   }
+
+  Future<TaskDto> createTask({
+    required String projectId,
+    required String content,
+  }) async {
+    final response = await _client.post<dynamic>(Paths.tasks, data: {
+      'project_id': projectId,
+      'content': content,
+    });
+    final taskJson = response.data;
+    return TaskDto.fromJson(taskJson);
+  }
 }

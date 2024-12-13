@@ -9,9 +9,10 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   TasksBloc({required this.taskRepository}) : super(const TasksState()) {
     on<TasksEvent>((event, emit) => switch (event) {
           TasksEvent$Get() => _get(event, emit),
+          TasksEvent$CreateTask() => _create(event, emit),
         });
 
-    add(TasksEvent$Get());
+    add(const TasksEvent$Get());
   }
 
   final ITaskRepository taskRepository;
@@ -20,9 +21,24 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     final tasksResult = await taskRepository.getTasks();
     switch (tasksResult) {
       case TaskResult$Success<List<Task>>():
-        emit(TasksState(tasks: tasksResult.data ?? []));
+        emit(TasksState(tasks: tasksResult.data));
       case TaskResult$Failure<List<Task>>():
-        emit(TasksState$FailToGet());
+        emit(const TasksState$FailToGet());
+    }
+  }
+
+  Future<void> _create(
+      TasksEvent$CreateTask event, Emitter<TasksState> emit) async {
+    final taskResult = await taskRepository.createTask(
+      projectId: event.projectId,
+      content: event.content,
+    );
+    switch (taskResult) {
+      case TaskResult$Success<Task>():
+        final tasks = state.tasks..add(taskResult.data);
+        emit(TasksState(tasks: tasks));
+      case TaskResult$Failure<Task>():
+        emit(const TasksState$FailToGet());
     }
   }
 }
