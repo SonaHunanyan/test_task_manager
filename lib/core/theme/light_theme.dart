@@ -17,6 +17,7 @@ final lightTheme = base.copyWith(
     scrim: Colors.grey,
     error: Colors.red,
     onSurfaceVariant: AppColors.longTextColor,
+    outlineVariant: AppColors.darkSecondaryText,
     tertiaryContainer: Colors.white,
   ),
   primaryColorLight: Colors.white,

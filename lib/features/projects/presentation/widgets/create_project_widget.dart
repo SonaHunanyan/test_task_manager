@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test_task_manager/core/constants/app_strings.dart';
+import 'package:test_task_manager/core/ui/widgets/buttons/primary_button.dart';
+import 'package:test_task_manager/core/ui/widgets/item_creation_widget.dart';
+import 'package:test_task_manager/core/ui/widgets/text_field/primary_text_field.dart';
+import 'package:test_task_manager/core/utils/validators.dart';
+import 'package:test_task_manager/features/projects/presentation/bloc/projects_bloc.dart';
+import 'package:test_task_manager/features/projects/presentation/bloc/projects_event.dart';
+
+class CreateProjectWidget extends StatefulWidget {
+  const CreateProjectWidget({super.key});
+
+  @override
+  State<CreateProjectWidget> createState() => _CreateProjectWidgetState();
+}
+
+class _CreateProjectWidgetState extends State<CreateProjectWidget> {
+  final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: IntrinsicHeight(
+        child: ItemCreationWidget(
+          title: AppStrings.createProject,
+          children: [
+            PrimaryTextField(
+              placeholder: AppStrings.projectName,
+              validator: Validator.required,
+              controller: _nameController,
+            ),
+            SizedBox(height: 50.h),
+            PrimaryButton(
+              title: AppStrings.create,
+              onTap: () {
+                final isValid = _formKey.currentState?.validate() ?? false;
+                if (!isValid) {
+                  return;
+                }
+                context.read<ProjectsBloc>().add(
+                    ProjectsEvent$CreateProject(name: _nameController.text));
+              },
+            ),
+            SizedBox(height: 30.h + MediaQuery.of(context).viewInsets.bottom),
+          ],
+        ),
+      ),
+    );
+  }
+}

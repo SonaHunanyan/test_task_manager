@@ -6,6 +6,8 @@ import 'package:get_it/get_it.dart';
 import 'package:test_task_manager/core/constants/app_strings.dart';
 import 'package:test_task_manager/core/extenstions/theme_extenstion.dart';
 import 'package:test_task_manager/core/router/app_router.gr.dart';
+import 'package:test_task_manager/features/projects/domain/repositories/project_repository.dart';
+import 'package:test_task_manager/features/projects/presentation/bloc/projects_bloc.dart';
 import 'package:test_task_manager/features/tasks/domain/repositories/task_repository.dart';
 import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_bloc.dart';
 
@@ -19,9 +21,17 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<TasksBloc>(
-      create: (context) =>
-          TasksBloc(taskRepository: GetIt.I.get<ITaskRepository>()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<TasksBloc>(
+          create: (context) =>
+              TasksBloc(taskRepository: GetIt.I.get<ITaskRepository>()),
+        ),
+        BlocProvider<ProjectsBloc>(
+          create: (context) =>
+              ProjectsBloc(taskRepository: GetIt.I.get<IProjectRepository>()),
+        ),
+      ],
       child: AutoTabsScaffold(
         routes: routes,
         bottomNavigationBuilder: (context, tabsRouter) => BottomNavigationBar(

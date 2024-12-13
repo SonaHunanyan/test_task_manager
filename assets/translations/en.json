@@ -2,5 +2,11 @@
     "tasks": "Tasks",
     "failToGetTasks": "Fail to get tasks",
     "add": "Add",
-    "createTask": "Create Task"
+    "createTask": "Create Task",
+    "createProject": "Create Project",
+    "task": "Task",
+    "project": "Project",
+    "projectName": "Project name",
+    "theFieldIsRequired": "The field is required",
+    "create": "Create"
 }

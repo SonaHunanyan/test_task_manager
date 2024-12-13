@@ -5,4 +5,10 @@ class AppStrings {
   static final failToGetTasks = 'failToGetTasks'.tr();
   static final add = 'add'.tr();
   static final createTask = 'createTask'.tr();
+  static final createProject = 'createProject'.tr();
+  static final task = 'task'.tr();
+  static final project = 'project'.tr();
+  static final projectName = 'projectName'.tr();
+  static final theFieldIsRequired = 'theFieldIsRequired'.tr();
+  static final create = 'create'.tr();
 }

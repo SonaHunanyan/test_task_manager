@@ -2,5 +2,11 @@
     "tasks": "Задачи",
     "failToGetTasks": "Не удалось загрузить задачи",
     "add": "Добавить",
-    "createTask": "Создать задачу"
+    "createTask": "Создать Задачу",
+    "createProject": "Create Проект",
+    "task": "Задача",
+    "project": "Проект",
+    "projectName": "Имя проекта",
+    "theFieldIsRequired": "Поле обязательно для заполнения",
+    "create": "Создать"
 }

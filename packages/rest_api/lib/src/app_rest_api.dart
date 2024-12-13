@@ -30,10 +30,12 @@ class AppRestApi {
     ]);
 
     taskApi = TaskApi(_dio);
+    projectApi = ProjectApi(_dio);
   }
 
   final String _baseUrl;
   final String _token;
   late final Dio _dio;
   late final TaskApi taskApi;
+  late final ProjectApi projectApi;
 }
