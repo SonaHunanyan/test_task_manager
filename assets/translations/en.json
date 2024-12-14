@@ -8,5 +8,9 @@
     "project": "Project",
     "projectName": "Project name",
     "theFieldIsRequired": "The field is required",
-    "create": "Create"
+    "create": "Create",
+    "content": "Content",
+    "selectProject": "Select project",
+    "projectIsRequired": "Project is required",
+    "failToCreateTask": "Fail to create task"
 }

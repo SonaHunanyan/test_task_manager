@@ -24,10 +24,12 @@ class HomeScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<TasksBloc>(
+          lazy: false,
           create: (context) =>
               TasksBloc(taskRepository: GetIt.I.get<ITaskRepository>()),
         ),
         BlocProvider<ProjectsBloc>(
+          lazy: false,
           create: (context) =>
               ProjectsBloc(taskRepository: GetIt.I.get<IProjectRepository>()),
         ),

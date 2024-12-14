@@ -25,4 +25,9 @@ class Project {
   final String viewStyle;
   final String url;
   final String? parentId;
+
+  @override
+  String toString() {
+    return name;
+  }
 }

@@ -8,5 +8,9 @@
     "project": "Проект",
     "projectName": "Имя проекта",
     "theFieldIsRequired": "Поле обязательно для заполнения",
-    "create": "Создать"
+    "create": "Создать",
+    "content": "Содержание",
+    "selectProject": "Выбрать проект",
+    "projectIsRequired": "Выберите проект",
+    "failToCreateTask": "Не удалось создать задачу"
 }

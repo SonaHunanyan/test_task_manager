@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:test_task_manager/features/tasks/domain/entities/due.dart';
 
-class Task {
+class Task extends Equatable {
   const Task({
     required this.id,
     required this.content,
@@ -23,7 +24,7 @@ class Task {
   final String content;
   final String description;
   final int commentCount;
-  final int isCompleted;
+  final bool isCompleted;
   final int order;
   final int priority;
   final String projectId;
@@ -35,4 +36,7 @@ class Task {
   final DateTime createdAt;
   final String? assigneeId;
   final String? assignerId;
+
+  @override
+  List<Object?> get props => [id];
 }

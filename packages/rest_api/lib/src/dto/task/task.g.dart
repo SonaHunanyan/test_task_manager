@@ -11,7 +11,7 @@ TaskDto _$TaskDtoFromJson(Map<String, dynamic> json) => TaskDto(
       content: json['content'] as String,
       description: json['description'] as String,
       commentCount: (json['comment_count'] as num).toInt(),
-      isCompleted: (json['is_completed'] as num).toInt(),
+      isCompleted: json['is_completed'] as bool,
       order: (json['order'] as num).toInt(),
       priority: (json['priority'] as num).toInt(),
       projectId: json['project_id'] as String,

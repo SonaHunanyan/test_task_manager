@@ -7,8 +7,10 @@ import 'package:test_task_manager/core/extenstions/theme_extenstion.dart';
 import 'package:test_task_manager/core/ui/widgets/buttons/primary_button.dart';
 import 'package:test_task_manager/core/ui/widgets/data_picker/primary_data_picker.dart';
 import 'package:test_task_manager/core/ui/widgets/snackbars/error_snack_bar.dart';
+import 'package:test_task_manager/features/projects/presentation/bloc/projects_bloc.dart';
 import 'package:test_task_manager/features/projects/presentation/widgets/create_project_widget.dart';
 import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_bloc.dart';
+import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_event.dart';
 import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_state.dart';
 import 'package:test_task_manager/features/tasks/presentation/model/main_entity.dart';
 import 'package:test_task_manager/features/tasks/presentation/widgets/create_task_widget.dart';
@@ -18,6 +20,8 @@ class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
 
   void _showItemPicker(BuildContext context) {
+    final projectsBloc = context.read<ProjectsBloc>();
+    final tasksBloc = context.read<TasksBloc>();
     showModalBottomSheet(
       context: context,
       useRootNavigator: true,
@@ -28,8 +32,19 @@ class TasksScreen extends StatelessWidget {
                 context: context,
                 useRootNavigator: true,
                 builder: (context) => switch (item) {
-                  MainEntity.task => const CreateTaskWidget(),
-                  MainEntity.project => const CreateProjectWidget(),
+                  MainEntity.task => BlocProvider<ProjectsBloc>(
+                      create: (_) => projectsBloc,
+                      child: CreateTaskWidget(
+                        onCreate: (projectId, content) {
+                          tasksBloc.add(TasksEvent$CreateTask(
+                              content: content, projectId: projectId));
+                        },
+                      ),
+                    ),
+                  MainEntity.project => BlocProvider<ProjectsBloc>(
+                      create: (_) => projectsBloc,
+                      child: const CreateProjectWidget(),
+                    ),
                 },
               );
             },
@@ -40,29 +55,35 @@ class TasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<TasksBloc, TasksState>(
-      listener: (context, state) {
-        if (state is TasksState$FailToGet) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            ErrorSnackBar(context, text: AppStrings.failToGetTasks),
-          );
-        }
-      },
-      builder: (context, state) => Scaffold(
-        backgroundColor: context.themeData.colorScheme.onSurface,
-        appBar: AppBar(
-          actions: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5.w),
-              child: PrimaryButton(
-                title: AppStrings.add,
-                onTap: () => _showItemPicker(context),
-              ),
-            )
-          ],
-        ),
-        body: Center(
-          child: ListView.builder(
+    return Scaffold(
+      backgroundColor: context.themeData.colorScheme.onSurface,
+      appBar: AppBar(
+        actions: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
+            child: PrimaryButton(
+              title: AppStrings.add,
+              onTap: () => _showItemPicker(context),
+            ),
+          )
+        ],
+      ),
+      body: Center(
+        child: BlocConsumer<TasksBloc, TasksState>(
+          listener: (context, state) {
+            if (state is! TasksState$FailToGet ||
+                state is! TasksState$FailToCreate) {
+              return;
+            }
+            final errorMessage = switch (state) {
+              TasksState$FailToCreate() => AppStrings.failToCreateTask,
+              TasksState$FailToGet() => AppStrings.failToGetTasks,
+            };
+            ScaffoldMessenger.of(context).showSnackBar(
+              ErrorSnackBar(context, text: errorMessage),
+            );
+          },
+          builder: (context, state) => ListView.builder(
             itemCount: state.tasks.length,
             itemBuilder: (context, index) {
               final task = state.tasks[index];

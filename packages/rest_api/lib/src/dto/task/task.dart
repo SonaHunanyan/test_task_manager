@@ -30,7 +30,7 @@ class TaskDto {
   @JsonKey(name: 'comment_count')
   final int commentCount;
   @JsonKey(name: 'is_completed')
-  final int isCompleted;
+  final bool isCompleted;
   final int order;
   final int priority;
   @JsonKey(name: 'project_id')

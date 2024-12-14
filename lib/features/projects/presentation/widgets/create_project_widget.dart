@@ -43,6 +43,7 @@ class _CreateProjectWidgetState extends State<CreateProjectWidget> {
                 }
                 context.read<ProjectsBloc>().add(
                     ProjectsEvent$CreateProject(name: _nameController.text));
+                Navigator.of(context).pop();
               },
             ),
             SizedBox(height: 30.h + MediaQuery.of(context).viewInsets.bottom),

@@ -22,7 +22,7 @@ class ProjectsBloc extends Bloc<ProjectsEvent, ProjectsState> {
     final tasksResult = await taskRepository.getProjects();
     switch (tasksResult) {
       case ProjectResult$Success<List<Project>>():
-        emit(ProjectsState(tasks: tasksResult.data));
+        emit(ProjectsState(projects: tasksResult.data));
       case ProjectResult$Failure<List<Project>>():
         emit(const ProjectsState$FailToGet());
     }
@@ -35,8 +35,8 @@ class ProjectsBloc extends Bloc<ProjectsEvent, ProjectsState> {
     );
     switch (taskResult) {
       case ProjectResult$Success<Project>():
-        final tasks = state.tasks..add(taskResult.data);
-        emit(ProjectsState(tasks: tasks));
+        final tasks = state.projects..add(taskResult.data);
+        emit(ProjectsState(projects: tasks));
       case ProjectResult$Failure<Project>():
         emit(const ProjectsState$FailToGet());
     }
