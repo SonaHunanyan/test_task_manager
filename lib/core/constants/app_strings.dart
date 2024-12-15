@@ -15,4 +15,8 @@ class AppStrings {
   static final content = 'content'.tr();
   static final selectProject = 'selectProject'.tr();
   static final projectIsRequired = 'projectIsRequired'.tr();
+  static final notFound = 'notFound'.tr();
+  static final queue = 'queue'.tr();
+  static final inProgress = 'inProgress'.tr();
+  static final done = 'done'.tr();
 }

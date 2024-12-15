@@ -21,6 +21,9 @@ final lightTheme = base.copyWith(
     tertiaryContainer: Colors.white,
   ),
   primaryColorLight: Colors.white,
+  secondaryHeaderColor: AppColors.queueBlue,
+  primaryColor: AppColors.inProgressGold,
+  primaryColorDark: AppColors.doneGreen,
 
   /// Text theme
   textTheme: base.primaryTextTheme.copyWith(

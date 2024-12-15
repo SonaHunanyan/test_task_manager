@@ -14,6 +14,7 @@ import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_event.d
 import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_state.dart';
 import 'package:test_task_manager/features/tasks/presentation/model/main_entity.dart';
 import 'package:test_task_manager/features/tasks/presentation/widgets/create_task_widget.dart';
+import 'package:test_task_manager/features/tasks/presentation/widgets/kanban_widget.dart';
 
 @RoutePage()
 class TasksScreen extends StatelessWidget {
@@ -83,18 +84,7 @@ class TasksScreen extends StatelessWidget {
               ErrorSnackBar(context, text: errorMessage),
             );
           },
-          builder: (context, state) => ListView.builder(
-            itemCount: state.tasks.length,
-            itemBuilder: (context, index) {
-              final task = state.tasks[index];
-              return Text(
-                task.content,
-                style: context.themeData.textTheme.bodyMedium?.copyWith(
-                  color: context.themeData.colorScheme.primary,
-                ),
-              );
-            },
-          ),
+          builder: (context, state) => const KanbanWidget(),
         ),
       ),
     );

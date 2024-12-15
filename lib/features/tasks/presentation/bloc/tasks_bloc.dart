@@ -11,6 +11,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     on<TasksEvent>((event, emit) => switch (event) {
           TasksEvent$Get() => _get(event, emit),
           TasksEvent$CreateTask() => _create(event, emit),
+          TasksEvent$Update() => _update(event, emit),
         });
 
     add(const TasksEvent$Get());
@@ -43,5 +44,13 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       case TaskResult$Failure<Task>():
         emit(TasksState$FailToCreate(tasks: state.tasks));
     }
+  }
+
+  Future<void> _update(
+      TasksEvent$Update event, Emitter<TasksState> emit) async {
+    final tasks = state.tasks;
+    final index = tasks.indexWhere((e) => e.id == event.taskId);
+    tasks[index] = tasks[index].copyWith(priority: event.priority);
+    emit(TasksState$Loading(tasks: tasks));
   }
 }

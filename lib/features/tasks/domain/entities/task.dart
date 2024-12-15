@@ -39,4 +39,42 @@ class Task extends Equatable {
 
   @override
   List<Object?> get props => [id];
+
+  Task copyWith({
+    String? id,
+    String? content,
+    String? description,
+    int? commentCount,
+    bool? isCompleted,
+    int? order,
+    int? priority,
+    String? projectId,
+    List<String>? labels,
+    Due? due,
+    String? sectionId,
+    String? parentId,
+    String? creatorId,
+    DateTime? createdAt,
+    String? assigneeId,
+    String? assignerId,
+  }) {
+    return Task(
+      id: id ?? this.id,
+      content: content ?? this.content,
+      description: description ?? this.description,
+      commentCount: commentCount ?? this.commentCount,
+      isCompleted: isCompleted ?? this.isCompleted,
+      order: order ?? this.order,
+      priority: priority ?? this.priority,
+      projectId: projectId ?? this.projectId,
+      labels: labels ?? this.labels,
+      due: due ?? this.due,
+      sectionId: sectionId ?? this.sectionId,
+      parentId: parentId ?? this.parentId,
+      creatorId: creatorId ?? this.creatorId,
+      createdAt: createdAt ?? this.createdAt,
+      assigneeId: assigneeId ?? this.assigneeId,
+      assignerId: assignerId ?? this.assignerId,
+    );
+  }
 }

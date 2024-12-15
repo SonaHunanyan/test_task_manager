@@ -24,6 +24,10 @@ final darkTheme = base.copyWith(
   ),
   primaryColorLight: AppColors.backgroundDark,
 
+  secondaryHeaderColor: AppColors.queueBlue,
+  primaryColor: AppColors.inProgressGold,
+  primaryColorDark: AppColors.doneGreen,
+
   /// Text theme
   textTheme: base.primaryTextTheme.copyWith(
     displaySmall: AppTextStyles.displaySmall,

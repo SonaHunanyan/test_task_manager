@@ -14,3 +14,12 @@ class TasksEvent$CreateTask extends TasksEvent {
   final String projectId;
   final String content;
 }
+
+class TasksEvent$Update extends TasksEvent {
+  const TasksEvent$Update({
+    required this.taskId,
+    required this.priority,
+  });
+  final String taskId;
+  final int priority;
+}

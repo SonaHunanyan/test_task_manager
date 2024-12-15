@@ -12,5 +12,9 @@
     "content": "Содержание",
     "selectProject": "Выбрать проект",
     "projectIsRequired": "Выберите проект",
-    "failToCreateTask": "Не удалось создать задачу"
+    "failToCreateTask": "Не удалось создать задачу",
+    "notFound": "Не найдено",
+    "queue": "В очереди",
+    "inProgress": "В процессе",
+    "done": "Завершено"
 }

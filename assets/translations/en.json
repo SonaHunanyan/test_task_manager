@@ -12,5 +12,9 @@
     "content": "Content",
     "selectProject": "Select project",
     "projectIsRequired": "Project is required",
-    "failToCreateTask": "Fail to create task"
+    "failToCreateTask": "Fail to create task",
+    "notFound": "Not found",
+    "queue": "Queue",
+    "inProgress": "In progress",
+    "done": "Done"
 }

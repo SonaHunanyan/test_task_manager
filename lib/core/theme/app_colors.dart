@@ -10,10 +10,13 @@ class AppColors {
   static const Color whitePurple = Color(0xffF0ECFF);
   static const Color switcherTrack = Color(0xffE9E9EA);
 
-  //Dark mode
   static const Color backgroundDark = Color(0xff191D23);
   static const Color darkSecondaryText = Color(0xff828282);
   static const Color blackPurple = Color(0xff404752);
   static const Color darkStrokColor = Color(0xff2B3037);
   static const Color detailColor = Color(0xff252B34);
+
+  static const queueBlue = Color(0xff46C2FE);
+  static const inProgressGold = Color(0xffFFC846);
+  static const doneGreen = Color(0xff46FE6C);
 }
