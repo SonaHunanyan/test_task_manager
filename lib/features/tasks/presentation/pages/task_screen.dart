@@ -68,6 +68,7 @@ class _TaskScreenState extends State<TaskScreen> {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.w),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 20.h),
                 Row(
@@ -76,10 +77,22 @@ class _TaskScreenState extends State<TaskScreen> {
                     PrimaryButton(
                       title: AppStrings.startTimer,
                       enabled: _task.due?.datetime == null,
+                      onTap: () {
+                        context.read<TasksBloc>().add(TaskEvent$UpdateDueTime(
+                              taskId: _task.id,
+                              dateTime: DateTime.now(),
+                            ));
+                      },
                     ),
                     PrimaryButton(
                       title: AppStrings.stopTimer,
                       enabled: _task.due?.datetime != null,
+                      onTap: () {
+                        context.read<TasksBloc>().add(TaskEvent$UpdateDueTime(
+                              taskId: _task.id,
+                              dateTime: null,
+                            ));
+                      },
                     ),
                   ],
                 ),
@@ -112,11 +125,37 @@ class _TaskScreenState extends State<TaskScreen> {
                         description: _descriptionController.text));
                   },
                 ),
+                SizedBox(height: 20.h),
+                Text(
+                  '${AppStrings.duration}: ${_task.realDuration.toDurationString()}',
+                  style: context.themeData.textTheme.bodyLarge?.copyWith(
+                    color: context.themeData.colorScheme.primary,
+                  ),
+                )
               ],
             ),
           );
         }),
       ),
     );
+  }
+}
+
+extension on int {
+  String toDurationString() {
+    final days = this ~/ (24 * 60);
+    final hours = (this % (24 * 60)) ~/ 60;
+    final minutes = this % 60;
+
+    final parts = <String>[];
+
+    if (days > 0) parts.add(AppStrings.daysTime(days));
+    if (hours > 0) parts.add(AppStrings.hoursTime(hours));
+    if (minutes > 0 || parts.isEmpty) {
+      parts.add(AppStrings.minutesTime(minutes));
+    }
+
+    final result = parts.join(', ');
+    return result;
   }
 }

@@ -24,5 +24,23 @@
     "startTimer": "Запустить таймер",
     "stopTimer": "Остановить таймер",
     "enterDescription": "Введите описание...",
-    "description": "Описание"
+    "description": "Описание",
+    "duration": "Длительности",
+    "time": {
+        "days": {
+            "one": "{count} день",
+            "few": "{count} дня",
+            "other": "{count} дней"
+        },
+        "hours": {
+            "one": "{count} час",
+            "few": "{count} часа",
+            "other": "{count} часов"
+        },
+        "minutes": {
+            "one": "{count} минута",
+            "few": "{count} минуты",
+            "other": "{count} минут"
+        }
+    }
 }

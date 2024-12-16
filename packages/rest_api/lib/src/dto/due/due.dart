@@ -6,19 +6,19 @@ part 'due.g.dart';
 @JsonSerializable()
 class DueDto {
   const DueDto({
-    required this.date,
-    required this.isRecurring,
-    required this.datetime,
-    required this.string,
-    required this.timezone,
+    this.date,
+    this.isRecurring,
+    this.datetime,
+    this.string,
+    this.timezone,
   });
-  final String date;
+  final String? date;
   @JsonKey(name: 'is_recurring')
-  final bool isRecurring;
+  final bool? isRecurring;
   @UTCConverter()
-  final DateTime datetime;
-  final String string;
-  final String timezone;
+  final DateTime? datetime;
+  final String? string;
+  final String? timezone;
 
   factory DueDto.fromJson(Map<String, dynamic> json) => _$DueDtoFromJson(json);
 

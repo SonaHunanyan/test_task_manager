@@ -24,5 +24,20 @@
     "startTimer": "Start timer",
     "stopTimer": "Stop timer",
     "enterDescription": "Enter description...",
-    "description": "Description"
+    "description": "Description",
+    "duration": "Duration",
+    "time": {
+        "days": {
+            "one": "{count} day",
+            "other": "{count} days"
+        },
+        "hours": {
+            "one": "{count} hour",
+            "other": "{count} hours"
+        },
+        "minutes": {
+            "one": "{count} minute",
+            "other": "{count} minutes"
+        }
+    }
 }

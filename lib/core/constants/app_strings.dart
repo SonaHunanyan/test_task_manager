@@ -27,4 +27,11 @@ class AppStrings {
   static final stopTimer = 'stopTimer'.tr();
   static final description = 'description'.tr();
   static final enterDescription = 'enterDescription'.tr();
+  static final duration = 'duration'.tr();
+  static daysTime(int days) =>
+      'time.days'.plural(days, namedArgs: {'count': '$days'});
+  static hoursTime(int hours) =>
+      'time.hours'.plural(hours, namedArgs: {'count': '$hours'});
+  static minutesTime(int minutes) =>
+      'time.minutes'.plural(minutes, namedArgs: {'count': '$minutes'});
 }

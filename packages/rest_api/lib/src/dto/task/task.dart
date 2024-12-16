@@ -23,6 +23,7 @@ class TaskDto {
     this.parentId,
     this.assigneeId,
     this.assignerId,
+    this.duration,
   });
   final String id;
   final String content;
@@ -50,8 +51,12 @@ class TaskDto {
   final String? assigneeId;
   @JsonKey(name: 'assigner_id')
   final String? assignerId;
-  factory TaskDto.fromJson(Map<String, dynamic> json) =>
-      _$TaskDtoFromJson(json);
+  final int? duration;
+  factory TaskDto.fromJson(Map<String, dynamic> json) {
+    json['duration'] =
+        json['duration'] != null ? json['duration']['amount'] : null;
+    return _$TaskDtoFromJson(json);
+  }
 
   Map<String, dynamic> toJson() => _$TaskDtoToJson(this);
 }

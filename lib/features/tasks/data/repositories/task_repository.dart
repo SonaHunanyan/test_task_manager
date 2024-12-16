@@ -66,4 +66,30 @@ class TaskRepository implements ITaskRepository {
       return TaskResult$Failure(e, s);
     }
   }
+
+  @override
+  Future<TaskResult<Task>> updateTaskDueTime({
+    required String id,
+    required DateTime? dueTime,
+    required DateTime? prevDueTime,
+    required int? prevDuration,
+  }) async {
+    try {
+      int? totalDuration;
+      if (dueTime == null && prevDueTime != null) {
+        final duration = DateTime.now().difference(prevDueTime).inMinutes;
+        totalDuration = (prevDuration ?? 0) + duration;
+      }
+      final taskDto = await _taskApi.updateTaskDueTime(
+        id: id,
+        dueTime: dueTime?.toIso8601String(),
+        duration: totalDuration,
+      );
+
+      final task = TaskMapper.toTask(taskDto);
+      return TaskResult$Success(data: task);
+    } catch (e, s) {
+      return TaskResult$Failure(e, s);
+    }
+  }
 }

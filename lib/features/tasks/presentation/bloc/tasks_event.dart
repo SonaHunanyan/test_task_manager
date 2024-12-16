@@ -32,3 +32,12 @@ class TasksEvent$Delete extends TasksEvent {
   const TasksEvent$Delete({required this.taskId});
   final String taskId;
 }
+
+class TaskEvent$UpdateDueTime extends TasksEvent {
+  const TaskEvent$UpdateDueTime({
+    required this.dateTime,
+    required this.taskId,
+  });
+  final String taskId;
+  final DateTime? dateTime;
+}

@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_task_manager/features/tasks/domain/entities/due.dart';
 import 'package:test_task_manager/features/tasks/domain/entities/task.dart';
 import 'package:test_task_manager/features/tasks/domain/entities/task_result.dart';
 import 'package:test_task_manager/features/tasks/domain/repositories/task_repository.dart';
@@ -14,6 +15,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
           TasksEvent$CreateTask() => _create(event, emit),
           TasksEvent$Update() => _update(event, emit),
           TasksEvent$Delete() => _delete(event, emit),
+          TaskEvent$UpdateDueTime() => _updateDueTime(event, emit),
         });
 
     add(const TasksEvent$Get());
@@ -81,6 +83,39 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       priority: event.priority,
       content: event.content,
       description: event.description,
+    );
+    switch (taskResult) {
+      case TaskResult$Success<Task>():
+        emit(TasksState$Data(tasks: tasks));
+      case TaskResult$Failure<Task>():
+        emit(TasksState$Error(
+            tasks: initialTasks, error: const TasksError$FailToUpdate()));
+    }
+  }
+
+  Future<void> _updateDueTime(
+      TaskEvent$UpdateDueTime event, Emitter<TasksState> emit) async {
+    final initialTasks = [...state.tasks];
+    final tasks = state.tasks;
+    final index = tasks.indexWhere((e) => e.id == event.taskId);
+    final task = tasks[index];
+    final prevDueTime = task.due?.datetime;
+    final due = task.due;
+    tasks[index] = task.copyWith(
+      due: due == null
+          ? Due(datetime: event.dateTime)
+          : due.copyWith(
+              datetime: () => event.dateTime,
+            ),
+      duration: task.realDuration,
+    );
+
+    emit(TasksState$Processing(tasks: tasks));
+    final taskResult = await taskRepository.updateTaskDueTime(
+      id: event.taskId,
+      dueTime: event.dateTime,
+      prevDueTime: prevDueTime,
+      prevDuration: task.duration,
     );
     switch (taskResult) {
       case TaskResult$Success<Task>():

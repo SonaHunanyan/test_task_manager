@@ -22,6 +22,7 @@ class TaskMapper {
       parentId: dto.parentId,
       assigneeId: dto.assigneeId,
       assignerId: dto.assignerId,
+      duration: dto.duration,
     );
   }
 

@@ -26,6 +26,7 @@ TaskDto _$TaskDtoFromJson(Map<String, dynamic> json) => TaskDto(
       parentId: json['parent_id'] as String?,
       assigneeId: json['assignee_id'] as String?,
       assignerId: json['assigner_id'] as String?,
+      duration: (json['duration'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$TaskDtoToJson(TaskDto instance) => <String, dynamic>{
@@ -45,4 +46,5 @@ Map<String, dynamic> _$TaskDtoToJson(TaskDto instance) => <String, dynamic>{
       'created_at': instance.createdAt.toIso8601String(),
       'assignee_id': instance.assigneeId,
       'assigner_id': instance.assignerId,
+      'duration': instance.duration,
     };

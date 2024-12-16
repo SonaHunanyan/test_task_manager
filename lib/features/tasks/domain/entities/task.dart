@@ -19,6 +19,7 @@ class Task extends Equatable {
     this.parentId,
     this.assigneeId,
     this.assignerId,
+    this.duration,
   });
   final String id;
   final String content;
@@ -36,9 +37,10 @@ class Task extends Equatable {
   final DateTime createdAt;
   final String? assigneeId;
   final String? assignerId;
+  final int? duration;
 
   @override
-  List<Object?> get props => [id];
+  List<Object?> get props => [id, due?.datetime, duration];
 
   Task copyWith({
     String? id,
@@ -57,6 +59,7 @@ class Task extends Equatable {
     DateTime? createdAt,
     String? assigneeId,
     String? assignerId,
+    int? duration,
   }) {
     return Task(
       id: id ?? this.id,
@@ -75,6 +78,11 @@ class Task extends Equatable {
       createdAt: createdAt ?? this.createdAt,
       assigneeId: assigneeId ?? this.assigneeId,
       assignerId: assignerId ?? this.assignerId,
+      duration: duration ?? this.duration,
     );
   }
+
+  int get realDuration =>
+      (duration ?? 0) +
+      DateTime.now().difference(due?.datetime ?? DateTime.now()).inMinutes;
 }

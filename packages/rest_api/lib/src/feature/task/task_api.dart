@@ -43,6 +43,20 @@ class TaskApi {
     return TaskDto.fromJson(taskJson);
   }
 
+  Future<TaskDto> updateTaskDueTime({
+    required String id,
+    required String? dueTime,
+    int? duration,
+  }) async {
+    final response = await _client.post<dynamic>('${Paths.tasks}/$id', data: {
+      'due_datetime': dueTime,
+      if (duration != null && duration > 0) 'duration': duration,
+      if (duration != null && duration > 0) 'duration_unit': 'minute',
+    });
+    final taskJson = response.data;
+    return TaskDto.fromJson(taskJson);
+  }
+
   Future<void> deleteTask({
     required String id,
   }) async {

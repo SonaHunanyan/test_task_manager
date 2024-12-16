@@ -21,4 +21,10 @@ abstract interface class ITaskRepository {
   Future<TaskResult<void>> deleteTask({
     required String id,
   });
+  Future<TaskResult<Task>> updateTaskDueTime({
+    required String id,
+    required DateTime? dueTime,
+    required DateTime? prevDueTime,
+    required int? prevDuration,
+  });
 }
