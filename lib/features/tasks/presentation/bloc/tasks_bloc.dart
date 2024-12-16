@@ -24,7 +24,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   final ITaskRepository taskRepository;
 
   Future<void> _get(TasksEvent$Get event, Emitter<TasksState> emit) async {
-    emit(TasksState$Processing(tasks: state.tasks));
+    emit(TasksState$Loading(tasks: state.tasks));
     final tasksResult = await taskRepository.getTasks();
     switch (tasksResult) {
       case TaskResult$Success<List<Task>>():
