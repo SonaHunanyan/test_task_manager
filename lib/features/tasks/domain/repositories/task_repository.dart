@@ -13,7 +13,9 @@ abstract interface class ITaskRepository {
 
   Future<TaskResult<Task>> updateTask({
     required String id,
-    required int priority,
+    int? priority,
+    String? content,
+    String? description,
   });
 
   Future<TaskResult<void>> deleteTask({

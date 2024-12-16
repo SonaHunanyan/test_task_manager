@@ -23,4 +23,6 @@ class AppStrings {
   static final done = 'done'.tr();
   static final createdAt = 'createdAt'.tr();
   static final back = 'back'.tr();
+  static final startTimer = 'startTimer'.tr();
+  static final stopTimer = 'stopTimer'.tr();
 }

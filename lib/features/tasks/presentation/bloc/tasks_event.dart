@@ -18,10 +18,14 @@ class TasksEvent$CreateTask extends TasksEvent {
 class TasksEvent$Update extends TasksEvent {
   const TasksEvent$Update({
     required this.taskId,
-    required this.priority,
+    this.priority,
+    this.content,
+    this.description,
   });
   final String taskId;
-  final int priority;
+  final int? priority;
+  final String? content;
+  final String? description;
 }
 
 class TasksEvent$Delete extends TasksEvent {

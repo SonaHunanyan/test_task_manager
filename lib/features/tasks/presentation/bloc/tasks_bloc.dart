@@ -67,14 +67,20 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
 
   Future<void> _update(
       TasksEvent$Update event, Emitter<TasksState> emit) async {
-    final initialTasks = state.tasks;
+    final initialTasks = [...state.tasks];
     final tasks = state.tasks;
     final index = tasks.indexWhere((e) => e.id == event.taskId);
-    tasks[index] = tasks[index].copyWith(priority: event.priority);
+    tasks[index] = tasks[index].copyWith(
+      priority: event.priority,
+      content: event.content,
+      description: event.description,
+    );
     emit(TasksState$Processing(tasks: tasks));
     final taskResult = await taskRepository.updateTask(
       id: event.taskId,
       priority: event.priority,
+      content: event.content,
+      description: event.description,
     );
     switch (taskResult) {
       case TaskResult$Success<Task>():

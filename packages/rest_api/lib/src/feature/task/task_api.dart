@@ -30,10 +30,14 @@ class TaskApi {
 
   Future<TaskDto> updateTask({
     required String id,
-    required int priority,
+    int? priority,
+    String? content,
+    String? description,
   }) async {
     final response = await _client.post<dynamic>('${Paths.tasks}/$id', data: {
-      'priority': priority,
+      if (priority != null) 'priority': priority,
+      if (content != null) 'content': content,
+      if (description != null) 'description': description,
     });
     final taskJson = response.data;
     return TaskDto.fromJson(taskJson);

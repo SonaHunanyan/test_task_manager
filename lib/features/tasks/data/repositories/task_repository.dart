@@ -47,12 +47,18 @@ class TaskRepository implements ITaskRepository {
   }
 
   @override
-  Future<TaskResult<Task>> updateTask(
-      {required String id, required int priority}) async {
+  Future<TaskResult<Task>> updateTask({
+    required String id,
+    int? priority,
+    String? content,
+    String? description,
+  }) async {
     try {
       final taskDto = await _taskApi.updateTask(
         id: id,
         priority: priority,
+        content: content,
+        description: description,
       );
       final task = TaskMapper.toTask(taskDto);
       return TaskResult$Success(data: task);

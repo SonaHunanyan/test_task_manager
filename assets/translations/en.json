@@ -20,5 +20,7 @@
     "inProgress": "In progress",
     "done": "Done",
     "createdAt": "Created at",
-    "back": "Back"
+    "back": "Back",
+    "startTimer": "Start timer",
+    "stopTimer": "Stop timer"
 }

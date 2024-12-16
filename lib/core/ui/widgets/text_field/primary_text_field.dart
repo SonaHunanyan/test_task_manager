@@ -7,7 +7,8 @@ class PrimaryTextField extends FormField<String> {
     this.controller,
     this.placeholder,
     this.keyboardType,
-    this.prefix,
+    this.suffix,
+    this.readOnly = false,
     super.validator,
     super.key,
   }) : super(
@@ -22,8 +23,9 @@ class PrimaryTextField extends FormField<String> {
               controller: controller,
               placeholder: placeholder,
               keyboardType: keyboardType,
-              prefix: prefix,
+              prefix: suffix,
               onChanged: onChangedHandler,
+              readOnly: readOnly,
             );
           },
         );
@@ -31,7 +33,8 @@ class PrimaryTextField extends FormField<String> {
   final String? placeholder;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
-  final Widget? prefix;
+  final Widget? suffix;
+  final bool readOnly;
 }
 
 class _TextFieldWidget extends StatelessWidget {
@@ -42,6 +45,7 @@ class _TextFieldWidget extends StatelessWidget {
     this.onChanged,
     this.prefix,
     this.error,
+    this.readOnly = false,
   });
   final String? placeholder;
   final TextEditingController? controller;
@@ -49,6 +53,7 @@ class _TextFieldWidget extends StatelessWidget {
   final String? error;
   final void Function(String)? onChanged;
   final Widget? prefix;
+  final bool readOnly;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -64,13 +69,9 @@ class _TextFieldWidget extends StatelessWidget {
           ),
           child: Row(
             children: [
-              if (prefix != null)
-                Padding(
-                  padding: EdgeInsets.only(right: 8.w),
-                  child: prefix,
-                ),
               Expanded(
                 child: TextField(
+                  readOnly: readOnly,
                   onChanged: onChanged,
                   onTapOutside: (event) {
                     FocusScope.of(context).unfocus();
@@ -90,6 +91,11 @@ class _TextFieldWidget extends StatelessWidget {
                   ),
                 ),
               ),
+              if (prefix != null)
+                Padding(
+                  padding: EdgeInsets.only(left: 8.w),
+                  child: prefix,
+                ),
             ],
           ),
         ),

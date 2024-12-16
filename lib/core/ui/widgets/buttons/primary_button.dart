@@ -32,9 +32,9 @@ class PrimaryButton extends StatelessWidget {
           height: height.h,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: enabled
-                ? (backgroundColor ?? context.themeData.colorScheme.secondary)
-                : context.themeData.indicatorColor,
+            color: backgroundColor ??
+                context.themeData.colorScheme.secondary
+                    .withOpacity(enabled ? 1 : 0.3),
             borderRadius: BorderRadius.circular(6),
           ),
           child: isLoading
