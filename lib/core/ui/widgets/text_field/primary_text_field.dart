@@ -9,6 +9,8 @@ class PrimaryTextField extends FormField<String> {
     this.keyboardType,
     this.suffix,
     this.readOnly = false,
+    this.height,
+    this.maxLines = 1,
     super.validator,
     super.key,
   }) : super(
@@ -26,6 +28,8 @@ class PrimaryTextField extends FormField<String> {
               prefix: suffix,
               onChanged: onChangedHandler,
               readOnly: readOnly,
+              height: height,
+              maxLines: maxLines,
             );
           },
         );
@@ -35,6 +39,8 @@ class PrimaryTextField extends FormField<String> {
   final TextInputType? keyboardType;
   final Widget? suffix;
   final bool readOnly;
+  final int? maxLines;
+  final double? height;
 }
 
 class _TextFieldWidget extends StatelessWidget {
@@ -45,7 +51,9 @@ class _TextFieldWidget extends StatelessWidget {
     this.onChanged,
     this.prefix,
     this.error,
+    this.height,
     this.readOnly = false,
+    this.maxLines = 1,
   });
   final String? placeholder;
   final TextEditingController? controller;
@@ -54,6 +62,8 @@ class _TextFieldWidget extends StatelessWidget {
   final void Function(String)? onChanged;
   final Widget? prefix;
   final bool readOnly;
+  final int? maxLines;
+  final double? height;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -61,8 +71,8 @@ class _TextFieldWidget extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.symmetric(horizontal: 12.w),
-          alignment: Alignment.center,
-          height: 37.h,
+          alignment: maxLines == 1 ? Alignment.center : Alignment.topCenter,
+          height: height ?? 37.h,
           decoration: BoxDecoration(
             color: context.themeData.colorScheme.secondary.withOpacity(0.2),
             borderRadius: BorderRadius.circular(5.r),
@@ -73,6 +83,7 @@ class _TextFieldWidget extends StatelessWidget {
                 child: TextField(
                   readOnly: readOnly,
                   onChanged: onChanged,
+                  maxLines: maxLines,
                   onTapOutside: (event) {
                     FocusScope.of(context).unfocus();
                   },

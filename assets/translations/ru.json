@@ -22,5 +22,7 @@
     "createdAt": "Создано в",
     "back": "Назад",
     "startTimer": "Запустить таймер",
-    "stopTimer": "Остановить таймер"
+    "stopTimer": "Остановить таймер",
+    "enterDescription": "Введите описание...",
+    "description": "Описание"
 }

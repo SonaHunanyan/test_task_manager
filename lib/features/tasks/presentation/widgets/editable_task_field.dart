@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_task_manager/core/extenstions/theme_extenstion.dart';
 import 'package:test_task_manager/core/ui/widgets/text_field/primary_text_field.dart';
-import 'package:test_task_manager/core/utils/validators.dart';
 
 class EditableTaskField extends StatefulWidget {
   const EditableTaskField({
@@ -10,6 +9,10 @@ class EditableTaskField extends StatefulWidget {
     required this.controller,
     required this.onCancelEditing,
     required this.onEdit,
+    this.placeholder,
+    this.validator,
+    this.maxLines = 1,
+    this.height,
     super.key,
   });
 
@@ -17,6 +20,10 @@ class EditableTaskField extends StatefulWidget {
   final TextEditingController controller;
   final VoidCallback onCancelEditing;
   final VoidCallback onEdit;
+  final String? placeholder;
+  final String? Function(String?)? validator;
+  final int? maxLines;
+  final double? height;
 
   @override
   State<EditableTaskField> createState() => _EditableTaskFieldState();
@@ -43,7 +50,10 @@ class _EditableTaskFieldState extends State<EditableTaskField> {
             builder: (context, value, child) => PrimaryTextField(
               controller: widget.controller,
               readOnly: !value,
-              validator: Validator.required,
+              validator: widget.validator,
+              placeholder: widget.placeholder,
+              maxLines: widget.maxLines,
+              height: widget.height,
               suffix: value
                   ? Row(
                       children: [

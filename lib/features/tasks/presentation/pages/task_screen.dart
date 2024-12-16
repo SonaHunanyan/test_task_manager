@@ -7,6 +7,7 @@ import 'package:test_task_manager/core/constants/app_strings.dart';
 import 'package:test_task_manager/core/extenstions/theme_extenstion.dart';
 import 'package:test_task_manager/core/ui/widgets/buttons/primary_back_button.dart';
 import 'package:test_task_manager/core/ui/widgets/buttons/primary_button.dart';
+import 'package:test_task_manager/core/utils/validators.dart';
 import 'package:test_task_manager/features/tasks/domain/entities/task.dart';
 import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_bloc.dart';
 import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_event.dart';
@@ -29,11 +30,13 @@ class TaskScreen extends StatefulWidget {
 class _TaskScreenState extends State<TaskScreen> {
   Task get _task => context.read<TasksBloc>().state.taskById(widget.taskId);
   final _contentController = TextEditingController();
+  final _descriptionController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     _contentController.text = _task.content;
+    _descriptionController.text = _task.description;
   }
 
   @override
@@ -83,6 +86,7 @@ class _TaskScreenState extends State<TaskScreen> {
                 SizedBox(height: 20.h),
                 EditableTaskField(
                   title: AppStrings.content,
+                  validator: Validator.required,
                   controller: _contentController,
                   onCancelEditing: () {
                     _contentController.text = _task.content;
@@ -90,6 +94,22 @@ class _TaskScreenState extends State<TaskScreen> {
                   onEdit: () {
                     context.read<TasksBloc>().add(TasksEvent$Update(
                         taskId: _task.id, content: _contentController.text));
+                  },
+                ),
+                SizedBox(height: 20.h),
+                EditableTaskField(
+                  title: AppStrings.description,
+                  placeholder: AppStrings.enterDescription,
+                  controller: _descriptionController,
+                  maxLines: null,
+                  height: 100.h,
+                  onCancelEditing: () {
+                    _descriptionController.text = _task.description;
+                  },
+                  onEdit: () {
+                    context.read<TasksBloc>().add(TasksEvent$Update(
+                        taskId: _task.id,
+                        description: _descriptionController.text));
                   },
                 ),
               ],

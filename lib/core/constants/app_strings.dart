@@ -25,4 +25,6 @@ class AppStrings {
   static final back = 'back'.tr();
   static final startTimer = 'startTimer'.tr();
   static final stopTimer = 'stopTimer'.tr();
+  static final description = 'description'.tr();
+  static final enterDescription = 'enterDescription'.tr();
 }
