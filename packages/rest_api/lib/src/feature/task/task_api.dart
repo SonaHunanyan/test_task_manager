@@ -27,4 +27,23 @@ class TaskApi {
     final taskJson = response.data;
     return TaskDto.fromJson(taskJson);
   }
+
+  Future<TaskDto> updateTask({
+    required String id,
+    required int priority,
+  }) async {
+    final response = await _client.post<dynamic>('${Paths.tasks}/$id', data: {
+      'priority': priority,
+    });
+    final taskJson = response.data;
+    return TaskDto.fromJson(taskJson);
+  }
+
+  Future<TaskDto> deleteTask({
+    required String id,
+  }) async {
+    final response = await _client.delete<dynamic>('${Paths.tasks}/$id');
+    final taskJson = response.data;
+    return TaskDto.fromJson(taskJson);
+  }
 }

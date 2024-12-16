@@ -19,4 +19,5 @@ class AppStrings {
   static final queue = 'queue'.tr();
   static final inProgress = 'inProgress'.tr();
   static final done = 'done'.tr();
+  static final createdAt = 'createdAt'.tr();
 }

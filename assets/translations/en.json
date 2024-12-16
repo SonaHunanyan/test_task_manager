@@ -16,5 +16,6 @@
     "notFound": "Not found",
     "queue": "Queue",
     "inProgress": "In progress",
-    "done": "Done"
+    "done": "Done",
+    "createdAt": "Created at"
 }

@@ -33,4 +33,31 @@ class TaskRepository implements ITaskRepository {
       return TaskResult$Failure(e, s);
     }
   }
+
+  @override
+  Future<TaskResult<void>> deleteTask({required String id}) async {
+    try {
+      await _taskApi.deleteTask(
+        id: id,
+      );
+      return const TaskResult$Success(data: null);
+    } catch (e, s) {
+      return TaskResult$Failure(e, s);
+    }
+  }
+
+  @override
+  Future<TaskResult<Task>> updateTask(
+      {required String id, required int priority}) async {
+    try {
+      final taskDto = await _taskApi.updateTask(
+        id: id,
+        priority: priority,
+      );
+      final task = TaskMapper.toTask(taskDto);
+      return TaskResult$Success(data: task);
+    } catch (e, s) {
+      return TaskResult$Failure(e, s);
+    }
+  }
 }

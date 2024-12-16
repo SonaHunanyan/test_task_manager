@@ -1,9 +1,13 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:test_task_manager/core/constants/app_strings.dart';
 import 'package:test_task_manager/core/extenstions/date_time_extension.dart';
 import 'package:test_task_manager/core/extenstions/theme_extenstion.dart';
 import 'package:test_task_manager/features/tasks/domain/entities/task.dart';
+import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_bloc.dart';
+import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_event.dart';
 
 class TaskCard extends StatefulWidget {
   const TaskCard({
@@ -107,11 +111,14 @@ class _CardView extends StatelessWidget {
                   color: context.themeData.colorScheme.primary,
                 ),
               ),
-              if (!task.isCompleted)
+              if (task.priority < 3)
                 Align(
                   alignment: Alignment.centerRight,
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      context.read<TasksBloc>().add(TasksEvent$Update(
+                          taskId: task.id, priority: task.priority + 1));
+                    },
                     child: Icon(
                       Icons.arrow_right_alt_outlined,
                       size: 50.h,
@@ -136,7 +143,7 @@ class _CardView extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    'created at: ${task.createdAt.toLocal().toPrimaryFormat()}',
+                    '${AppStrings.createdAt}: ${task.createdAt.toLocal().toPrimaryFormat()}',
                     style: context.themeData.textTheme.bodySmall?.copyWith(
                       color: context.themeData.colorScheme.primary,
                     ),

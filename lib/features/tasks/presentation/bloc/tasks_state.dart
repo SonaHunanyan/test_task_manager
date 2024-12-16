@@ -24,3 +24,7 @@ class TasksState$FailToGet extends TasksState {
 class TasksState$FailToCreate extends TasksState {
   const TasksState$FailToCreate({required super.tasks});
 }
+
+class TasksState$FailToUpdate extends TasksState {
+  const TasksState$FailToUpdate({required super.tasks});
+}
