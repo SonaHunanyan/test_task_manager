@@ -4,6 +4,8 @@ class AppStrings {
   static final tasks = 'tasks'.tr();
   static final failToGetTasks = 'failToGetTasks'.tr();
   static final failToCreateTask = 'failToCreateTask'.tr();
+  static final failToUpdateTask = 'failToUpdateTask'.tr();
+  static final failToDeleteTask = 'failToDeleteTask'.tr();
   static final add = 'add'.tr();
   static final createTask = 'createTask'.tr();
   static final createProject = 'createProject'.tr();
@@ -20,4 +22,5 @@ class AppStrings {
   static final inProgress = 'inProgress'.tr();
   static final done = 'done'.tr();
   static final createdAt = 'createdAt'.tr();
+  static final back = 'back'.tr();
 }

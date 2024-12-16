@@ -13,9 +13,12 @@
     "selectProject": "Select project",
     "projectIsRequired": "Project is required",
     "failToCreateTask": "Fail to create task",
+    "failToUpdateTask": "Fail to update task",
+    "failToDeleteTask": "Fail to delete task",
     "notFound": "Not found",
     "queue": "Queue",
     "inProgress": "In progress",
     "done": "Done",
-    "createdAt": "Created at"
+    "createdAt": "Created at",
+    "back": "Back"
 }

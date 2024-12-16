@@ -13,9 +13,12 @@
     "selectProject": "Выбрать проект",
     "projectIsRequired": "Выберите проект",
     "failToCreateTask": "Не удалось создать задачу",
+    "failToUpdateTask": "Не удалось обновить задачу",
+    "failToDeleteTask": "Не удалось удалить задачу",
     "notFound": "Не найдено",
     "queue": "В очереди",
     "inProgress": "В процессе",
     "done": "Завершено",
-    "createdAt": "Создано в"
+    "createdAt": "Создано в",
+    "back": "Назад"
 }

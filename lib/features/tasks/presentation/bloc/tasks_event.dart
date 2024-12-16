@@ -23,3 +23,8 @@ class TasksEvent$Update extends TasksEvent {
   final String taskId;
   final int priority;
 }
+
+class TasksEvent$Delete extends TasksEvent {
+  const TasksEvent$Delete({required this.taskId});
+  final String taskId;
+}

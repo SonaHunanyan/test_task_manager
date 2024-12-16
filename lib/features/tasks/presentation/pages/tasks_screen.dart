@@ -13,6 +13,7 @@ import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_bloc.da
 import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_event.dart';
 import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_state.dart';
 import 'package:test_task_manager/features/tasks/presentation/model/main_entity.dart';
+import 'package:test_task_manager/features/tasks/presentation/model/tasks_error.dart';
 import 'package:test_task_manager/features/tasks/presentation/widgets/create_task_widget.dart';
 import 'package:test_task_manager/features/tasks/presentation/widgets/kanban_widget.dart';
 
@@ -72,13 +73,15 @@ class TasksScreen extends StatelessWidget {
       body: Center(
         child: BlocConsumer<TasksBloc, TasksState>(
           listener: (context, state) {
-            if (state is! TasksState$FailToGet ||
-                state is! TasksState$FailToCreate) {
+            if (state is! TasksState$Error) {
               return;
             }
-            final errorMessage = switch (state) {
-              TasksState$FailToCreate() => AppStrings.failToCreateTask,
-              TasksState$FailToGet() => AppStrings.failToGetTasks,
+            final errorMessage = switch (state.error) {
+              TasksError$FailToCreate() => AppStrings.failToCreateTask,
+              TasksState$Error() => AppStrings.failToGetTasks,
+              TasksError$FailToGet() => AppStrings.failToGetTasks,
+              TasksError$FailToUpdate() => AppStrings.failToUpdateTask,
+              TasksError$FailToDelete() => AppStrings.failToDeleteTask,
             };
             ScaffoldMessenger.of(context).showSnackBar(
               ErrorSnackBar(context, text: errorMessage),

@@ -39,11 +39,9 @@ class TaskApi {
     return TaskDto.fromJson(taskJson);
   }
 
-  Future<TaskDto> deleteTask({
+  Future<void> deleteTask({
     required String id,
   }) async {
-    final response = await _client.delete<dynamic>('${Paths.tasks}/$id');
-    final taskJson = response.data;
-    return TaskDto.fromJson(taskJson);
+    await _client.delete<dynamic>('${Paths.tasks}/$id');
   }
 }
