@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:test_task_manager/core/constants/app_strings.dart';
 import 'package:test_task_manager/core/extenstions/theme_extenstion.dart';
 import 'package:test_task_manager/core/ui/widgets/buttons/primary_back_button.dart';
 import 'package:test_task_manager/core/ui/widgets/buttons/primary_button.dart';
+import 'package:test_task_manager/core/ui/widgets/loader/primary_loader.dart';
 import 'package:test_task_manager/core/utils/validators.dart';
 import 'package:test_task_manager/features/tasks/domain/entities/task.dart';
 import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_bloc.dart';
@@ -40,6 +40,13 @@ class _TaskScreenState extends State<TaskScreen> {
   }
 
   @override
+  void dispose() {
+    _contentController.dispose();
+    _descriptionController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.themeData.colorScheme.onSurface,
@@ -60,10 +67,7 @@ class _TaskScreenState extends State<TaskScreen> {
           }
         }, builder: (context, state) {
           if (state is TasksState$Loading) {
-            return LoadingAnimationWidget.progressiveDots(
-              color: context.themeData.colorScheme.secondary,
-              size: 100.w,
-            );
+            return const PrimaryLoader();
           }
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.w),

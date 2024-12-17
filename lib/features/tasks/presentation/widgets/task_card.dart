@@ -133,17 +133,10 @@ class _CardView extends StatelessWidget {
                 ),
               Row(
                 children: [
-                  Icon(
-                    Icons.message,
-                    color: context.themeData.colorScheme.secondary
-                        .withOpacity(0.2),
-                  ),
-                  SizedBox(width: 5.w),
-                  Text(
-                    '${task.commentCount}',
-                    style: context.themeData.textTheme.bodyMedium?.copyWith(
-                      color: context.themeData.colorScheme.primary,
-                    ),
+                  _CommentsButton(
+                    taskId: task.id,
+                    taskContent: task.content,
+                    commentsCount: task.commentCount,
                   ),
                   const Spacer(),
                   Text(
@@ -157,6 +150,42 @@ class _CardView extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _CommentsButton extends StatelessWidget {
+  const _CommentsButton({
+    required this.taskId,
+    required this.taskContent,
+    required this.commentsCount,
+  });
+  final String taskId;
+  final String taskContent;
+  final int commentsCount;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        context.router.push(
+          CommentsRoute(taskId: taskId, taskContent: taskContent),
+        );
+      },
+      child: Row(
+        children: [
+          Icon(
+            Icons.message,
+            color: context.themeData.colorScheme.secondary.withOpacity(0.2),
+          ),
+          SizedBox(width: 5.w),
+          Text(
+            '$commentsCount',
+            style: context.themeData.textTheme.bodyMedium?.copyWith(
+              color: context.themeData.colorScheme.primary,
+            ),
+          ),
+        ],
       ),
     );
   }

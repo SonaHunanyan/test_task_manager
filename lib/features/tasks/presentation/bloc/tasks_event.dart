@@ -41,3 +41,8 @@ class TaskEvent$UpdateDueTime extends TasksEvent {
   final String taskId;
   final DateTime? dateTime;
 }
+
+class TasksEvent$IncreaseCommentsCount extends TasksEvent {
+  const TasksEvent$IncreaseCommentsCount({required this.taskId});
+  final String taskId;
+}

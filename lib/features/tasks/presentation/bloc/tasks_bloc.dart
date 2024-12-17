@@ -16,12 +16,23 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
           TasksEvent$Update() => _update(event, emit),
           TasksEvent$Delete() => _delete(event, emit),
           TaskEvent$UpdateDueTime() => _updateDueTime(event, emit),
+          TasksEvent$IncreaseCommentsCount() =>
+            _increaseCommentsCount(event, emit),
         });
 
     add(const TasksEvent$Get());
   }
 
   final ITaskRepository taskRepository;
+
+  Future<void> _increaseCommentsCount(
+      TasksEvent$IncreaseCommentsCount event, Emitter<TasksState> emit) async {
+    emit(TasksState$Processing(tasks: state.tasks));
+    final index = state.tasks.indexWhere((e) => e.id == event.taskId);
+    final task = state.tasks[index];
+    state.tasks[index] = task.copyWith(commentCount: task.commentCount + 1);
+    emit(TasksState$Data(tasks: state.tasks));
+  }
 
   Future<void> _get(TasksEvent$Get event, Emitter<TasksState> emit) async {
     emit(TasksState$Loading(tasks: state.tasks));

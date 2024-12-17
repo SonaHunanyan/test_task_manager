@@ -31,6 +31,7 @@ class AppRestApi {
 
     taskApi = TaskApi(_dio);
     projectApi = ProjectApi(_dio);
+    commentApi = CommentApi(_dio);
   }
 
   final String _baseUrl;
@@ -38,4 +39,5 @@ class AppRestApi {
   late final Dio _dio;
   late final TaskApi taskApi;
   late final ProjectApi projectApi;
+  late final CommentApi commentApi;
 }

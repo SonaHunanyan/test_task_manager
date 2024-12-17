@@ -39,5 +39,6 @@
             "one": "{count} minute",
             "other": "{count} minutes"
         }
-    }
+    },
+    "comment": "Comment"
 }

@@ -34,4 +34,5 @@ class AppStrings {
       'time.hours'.plural(hours, namedArgs: {'count': '$hours'});
   static minutesTime(int minutes) =>
       'time.minutes'.plural(minutes, namedArgs: {'count': '$minutes'});
+  static final comment = 'comment'.tr();
 }

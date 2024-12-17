@@ -44,6 +44,12 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
   }
 
   @override
+  void dispose() {
+    _contentController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 300.h + MediaQuery.of(context).viewInsets.bottom,

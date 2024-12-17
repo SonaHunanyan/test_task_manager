@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:test_task_manager/core/constants/app_strings.dart';
 import 'package:test_task_manager/core/extenstions/theme_extenstion.dart';
 import 'package:test_task_manager/core/ui/widgets/buttons/primary_button.dart';
 import 'package:test_task_manager/core/ui/widgets/data_picker/primary_data_picker.dart';
+import 'package:test_task_manager/core/ui/widgets/loader/primary_loader.dart';
 import 'package:test_task_manager/core/ui/widgets/snackbars/error_snack_bar.dart';
 import 'package:test_task_manager/features/projects/presentation/bloc/projects_bloc.dart';
 import 'package:test_task_manager/features/projects/presentation/widgets/create_project_widget.dart';
@@ -90,10 +90,7 @@ class TasksScreen extends StatelessWidget {
           },
           builder: (context, state) {
             if (state is TasksState$Loading) {
-              return LoadingAnimationWidget.progressiveDots(
-                color: context.themeData.colorScheme.secondary,
-                size: 100.w,
-              );
+              return const PrimaryLoader();
             }
             return const KanbanWidget();
           },

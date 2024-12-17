@@ -21,6 +21,12 @@ class _CreateProjectWidgetState extends State<CreateProjectWidget> {
   final _nameController = TextEditingController();
 
   @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
