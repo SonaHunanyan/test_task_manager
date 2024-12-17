@@ -35,4 +35,10 @@ class AppStrings {
   static minutesTime(int minutes) =>
       'time.minutes'.plural(minutes, namedArgs: {'count': '$minutes'});
   static final comment = 'comment'.tr();
+  static final delete = 'delete'.tr();
+  static final update = 'update'.tr();
+  static final failToGetComment = 'failToGetComment'.tr();
+  static final failToCreateComment = 'failToCreateComment'.tr();
+  static final failToUpdatComment = 'failToUpdateComment'.tr();
+  static final failToDeletComment = 'failToDeleteComment'.tr();
 }

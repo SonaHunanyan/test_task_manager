@@ -43,5 +43,11 @@
             "other": "{count} минут"
         }
     },
-    "comment": "Комментарий"
+    "comment": "Комментарий",
+    "delete": "Удалить",
+    "update": "Обновить",
+    "failToCreateComment": "Не удалось создать комментерий",
+    "failToUpdateComment": "Не удалось обновить комментерий",
+    "failToDeleteComment": "Не удалось удалить комментерий",
+    "failToGetComment": "Не удалось загрузить комментерий"
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_task_manager/core/extenstions/theme_extenstion.dart';
+import 'package:test_task_manager/core/utils/data_picker_options.dart';
 
-class PrimaryDataPicker<T> extends StatelessWidget {
+class PrimaryDataPicker<T extends DataPickerOptions> extends StatelessWidget {
   const PrimaryDataPicker(
       {required this.onPick, required this.items, super.key});
 
@@ -17,13 +18,13 @@ class PrimaryDataPicker<T> extends StatelessWidget {
       children: items.map((item) {
         return ListTile(
           leading: Icon(
-            Icons.check_circle_outline,
-            color: context.themeData.colorScheme.primary,
+            item.icon,
+            color: item.color(context),
           ),
           title: Text(
             '$item',
             style: context.themeData.textTheme.bodyMedium?.copyWith(
-              color: context.themeData.colorScheme.primary,
+              color: item.color(context),
             ),
           ),
           onTap: () {

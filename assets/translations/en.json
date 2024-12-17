@@ -40,5 +40,11 @@
             "other": "{count} minutes"
         }
     },
-    "comment": "Comment"
+    "comment": "Comment",
+    "delete": "Delete",
+    "update": "Update",
+    "failToCreateComment": "Fail to create Comment",
+    "failToUpdateComment": "Fail to update Comment",
+    "failToDeleteComment": "Fail to delete Comment",
+    "failToGetComment": "Fail to get Comment"
 }

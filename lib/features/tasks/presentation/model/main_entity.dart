@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:test_task_manager/core/constants/app_strings.dart';
+import 'package:test_task_manager/core/extenstions/theme_extenstion.dart';
+import 'package:test_task_manager/core/utils/data_picker_options.dart';
 
-enum MainEntity {
+enum MainEntity with DataPickerOptions {
   task,
   project;
 
@@ -13,4 +16,10 @@ enum MainEntity {
         return AppStrings.project;
     }
   }
+
+  @override
+  Color? color(BuildContext context) => context.themeData.colorScheme.primary;
+
+  @override
+  IconData? get icon => Icons.check_circle_outline;
 }

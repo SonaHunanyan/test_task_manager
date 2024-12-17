@@ -79,7 +79,6 @@ class TasksScreen extends StatelessWidget {
             }
             final errorMessage = switch (state.error) {
               TasksError$FailToCreate() => AppStrings.failToCreateTask,
-              TasksState$Error() => AppStrings.failToGetTasks,
               TasksError$FailToGet() => AppStrings.failToGetTasks,
               TasksError$FailToUpdate() => AppStrings.failToUpdateTask,
               TasksError$FailToDelete() => AppStrings.failToDeleteTask,
