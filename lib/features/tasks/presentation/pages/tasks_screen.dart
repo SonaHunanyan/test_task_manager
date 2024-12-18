@@ -10,6 +10,7 @@ import 'package:test_task_manager/core/ui/widgets/data_picker/primary_data_picke
 import 'package:test_task_manager/core/ui/widgets/loader/primary_loader.dart';
 import 'package:test_task_manager/core/ui/widgets/snackbars/error_snack_bar.dart';
 import 'package:test_task_manager/features/projects/presentation/bloc/projects_bloc.dart';
+import 'package:test_task_manager/features/projects/presentation/bloc/projects_event.dart';
 import 'package:test_task_manager/features/projects/presentation/widgets/create_project_widget.dart';
 import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_bloc.dart';
 import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_event.dart';
@@ -45,9 +46,11 @@ class TasksScreen extends StatelessWidget {
                         },
                       ),
                     ),
-                  MainEntity.project => BlocProvider<ProjectsBloc>(
-                      create: (_) => projectsBloc,
-                      child: const CreateProjectWidget(),
+                  MainEntity.project => CreateProjectWidget(
+                      onCreate: (value) {
+                        projectsBloc
+                            .add(ProjectsEvent$CreateProject(name: value));
+                      },
                     ),
                 },
               );

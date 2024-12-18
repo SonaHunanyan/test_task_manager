@@ -1,17 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_task_manager/core/constants/app_strings.dart';
 import 'package:test_task_manager/core/ui/widgets/buttons/primary_button.dart';
 import 'package:test_task_manager/core/ui/widgets/item_creation_widget.dart';
 import 'package:test_task_manager/core/ui/widgets/text_field/primary_text_field.dart';
 import 'package:test_task_manager/core/utils/validators.dart';
-import 'package:test_task_manager/features/projects/presentation/bloc/projects_bloc.dart';
-import 'package:test_task_manager/features/projects/presentation/bloc/projects_event.dart';
 
 class CreateProjectWidget extends StatefulWidget {
-  const CreateProjectWidget({super.key});
+  const CreateProjectWidget({required this.onCreate, super.key});
+
+  final ValueSetter<String> onCreate;
 
   @override
   State<CreateProjectWidget> createState() => _CreateProjectWidgetState();
@@ -48,8 +47,7 @@ class _CreateProjectWidgetState extends State<CreateProjectWidget> {
                 if (!isValid) {
                   return;
                 }
-                context.read<ProjectsBloc>().add(
-                    ProjectsEvent$CreateProject(name: _nameController.text));
+                widget.onCreate(_nameController.text);
                 Navigator.of(context).pop();
               },
             ),
