@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:test_task_manager/features/tasks/domain/entities/complete_task.dart';
 import 'package:test_task_manager/features/tasks/domain/entities/task.dart';
 import 'package:test_task_manager/features/tasks/presentation/model/tasks_error.dart';
@@ -10,7 +11,7 @@ sealed class TasksState {
   final List<Task> tasks;
   final List<CompleteTask> completeTasks;
 
-  Task taskById(String id) => tasks.firstWhere((e) => e.id == id);
+  Task? taskById(String id) => tasks.firstWhereOrNull((e) => e.id == id);
 }
 
 class TasksState$Initial extends TasksState {

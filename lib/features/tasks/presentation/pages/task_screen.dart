@@ -29,15 +29,15 @@ class TaskScreen extends StatefulWidget {
 }
 
 class _TaskScreenState extends State<TaskScreen> {
-  Task get _task => context.read<TasksBloc>().state.taskById(widget.taskId);
+  Task? get _task => context.read<TasksBloc>().state.taskById(widget.taskId);
   final _contentController = TextEditingController();
   final _descriptionController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _contentController.text = _task.content;
-    _descriptionController.text = _task.description;
+    _contentController.text = _task?.content ?? '';
+    _descriptionController.text = _task?.description ?? '';
   }
 
   @override
@@ -56,7 +56,7 @@ class _TaskScreenState extends State<TaskScreen> {
         leadingWidth: 100.w,
         actions: [
           DeleteTaskButton(
-            taskId: _task.id,
+            taskId: _task?.id ?? '',
           )
         ],
       ),
@@ -82,20 +82,28 @@ class _TaskScreenState extends State<TaskScreen> {
                   children: [
                     PrimaryButton(
                       title: context.tr(AppStrings.startTimer),
-                      enabled: _task.due?.datetime == null,
+                      enabled: _task?.due?.datetime == null,
                       onTap: () {
+                        final task = _task;
+                        if (task == null) {
+                          return;
+                        }
                         context.read<TasksBloc>().add(TaskEvent$UpdateDueTime(
-                              taskId: _task.id,
+                              taskId: task.id,
                               dateTime: DateTime.now(),
                             ));
                       },
                     ),
                     PrimaryButton(
                       title: context.tr(AppStrings.stopTimer),
-                      enabled: _task.due?.datetime != null,
+                      enabled: _task?.due?.datetime != null,
                       onTap: () {
+                        final task = _task;
+                        if (task == null) {
+                          return;
+                        }
                         context.read<TasksBloc>().add(TaskEvent$UpdateDueTime(
-                              taskId: _task.id,
+                              taskId: task.id,
                               dateTime: null,
                             ));
                       },
@@ -108,11 +116,15 @@ class _TaskScreenState extends State<TaskScreen> {
                   validator: (v) => Validator.required(context, v),
                   controller: _contentController,
                   onCancelEditing: () {
-                    _contentController.text = _task.content;
+                    _contentController.text = _task?.content ?? '';
                   },
                   onEdit: () {
+                    final task = _task;
+                    if (task == null) {
+                      return;
+                    }
                     context.read<TasksBloc>().add(TasksEvent$Update(
-                        taskId: _task.id, content: _contentController.text));
+                        taskId: task.id, content: _contentController.text));
                   },
                 ),
                 SizedBox(height: 20.h),
@@ -123,17 +135,21 @@ class _TaskScreenState extends State<TaskScreen> {
                   maxLines: null,
                   height: 100.h,
                   onCancelEditing: () {
-                    _descriptionController.text = _task.description;
+                    _descriptionController.text = _task?.description ?? '';
                   },
                   onEdit: () {
+                    final task = _task;
+                    if (task == null) {
+                      return;
+                    }
                     context.read<TasksBloc>().add(TasksEvent$Update(
-                        taskId: _task.id,
+                        taskId: task.id,
                         description: _descriptionController.text));
                   },
                 ),
                 SizedBox(height: 20.h),
                 Text(
-                  '${context.tr(AppStrings.duration)}: ${_task.realDuration.toDurationString(context)}',
+                  '${context.tr(AppStrings.duration)}: ${_task?.realDuration.toDurationString(context)}',
                   style: context.themeData.textTheme.bodyLarge?.copyWith(
                     color: context.themeData.colorScheme.primary,
                   ),
