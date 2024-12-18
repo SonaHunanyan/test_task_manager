@@ -50,4 +50,5 @@ class AppStrings {
   static const failToGetTheme = 'failToGetTheme';
   static const failToSetTheme = 'failToSetTheme';
   static const darkMode = 'darkMode';
+  static const completedAt = 'completedAt';
 }

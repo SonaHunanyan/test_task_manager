@@ -63,5 +63,6 @@
     "settings": "Settings",
     "failToGetTheme": "Fail to get theme",
     "failToSetTheme": "Fail to set theme",
-    "darkMode": "Dark mode"
+    "darkMode": "Dark mode",
+    "completedAt": "Completed at"
 }

@@ -66,5 +66,6 @@
     "settings": "Настройки",
     "failToGetTheme": "Не удалось получить тему",
     "failToSetTheme": "Не удалось установить тему",
-    "darkMode": "Темный режим"
+    "darkMode": "Темный режим",
+    "completedAt": "Завершено в"
 }

@@ -141,7 +141,7 @@ class _CardView extends StatelessWidget {
                 ),
               if (completeTimeStamp != null && task.priority == 3)
                 Text(
-                  'Completed at ${completeTimeStamp.toHistoryFormat()}',
+                  '${context.tr(AppStrings.completedAt)} ${completeTimeStamp.toHistoryFormat()}',
                   style: context.themeData.textTheme.bodySmall?.copyWith(
                     color: context.themeData.colorScheme.error,
                   ),
