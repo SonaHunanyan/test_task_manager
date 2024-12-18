@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
 mixin DataPickerOptions {
-  IconData? get icon;
+  Widget? icon(BuildContext context);
   Color? color(BuildContext context);
 }

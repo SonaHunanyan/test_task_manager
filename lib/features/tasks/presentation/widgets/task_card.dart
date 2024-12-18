@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -154,7 +155,7 @@ class _CardView extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    '${AppStrings.createdAt}: ${task.createdAt.toLocal().toPrimaryFormat()}',
+                    '${context.tr(AppStrings.createdAt)}: ${task.createdAt.toLocal().toPrimaryFormat()}',
                     style: context.themeData.textTheme.bodySmall?.copyWith(
                       color: context.themeData.colorScheme.primary,
                     ),

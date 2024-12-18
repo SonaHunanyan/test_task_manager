@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,7 +35,7 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
       ScaffoldMessenger.of(context).showSnackBar(
         ErrorSnackBar(
           context,
-          text: AppStrings.projectIsRequired,
+          text: context.tr(AppStrings.projectIsRequired),
         ),
       );
       return;
@@ -59,11 +60,11 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
           key: _formKey,
           child: SingleChildScrollView(
             child: ItemCreationWidget(
-              title: AppStrings.createTask,
+              title: context.tr(AppStrings.createTask),
               children: [
                 PrimaryTextField(
-                  placeholder: AppStrings.content,
-                  validator: Validator.required,
+                  placeholder: context.tr(AppStrings.content),
+                  validator: (v) => Validator.required(context, v),
                   controller: _contentController,
                 ),
                 SizedBox(
@@ -73,7 +74,7 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      AppStrings.selectProject,
+                      context.tr(AppStrings.selectProject),
                       style: context.themeData.textTheme.bodyLarge?.copyWith(
                           color: context.themeData.colorScheme.primary),
                     ),
@@ -91,7 +92,7 @@ class _CreateTaskWidgetState extends State<CreateTaskWidget> {
                 ),
                 SizedBox(height: 50.h),
                 PrimaryButton(
-                  title: AppStrings.create,
+                  title: context.tr(AppStrings.create),
                   onTap: _onCreate,
                 ),
                 SizedBox(height: 30.h),

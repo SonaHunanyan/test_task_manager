@@ -24,8 +24,11 @@ enum CommentAction with DataPickerOptions {
       };
 
   @override
-  IconData? get icon => switch (this) {
-        CommentAction.update => Icons.edit,
-        CommentAction.delete => Icons.delete,
-      };
+  Widget? icon(BuildContext context) => Icon(
+        switch (this) {
+          CommentAction.update => Icons.edit,
+          CommentAction.delete => Icons.delete,
+        },
+        color: color(context),
+      );
 }

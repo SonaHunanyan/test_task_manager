@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,6 +18,7 @@ class HomeScreen extends StatelessWidget {
 
   final routes = const [
     TasksRouter(),
+    SettinsRoute(),
   ];
 
   @override
@@ -54,25 +56,25 @@ class HomeScreen extends StatelessWidget {
               icon: _BottomBarItem(
                 icon: Icons.task,
                 isSelected: false,
-                label: AppStrings.tasks,
+                label: context.tr(AppStrings.tasks),
               ),
               activeIcon: _BottomBarItem(
                 icon: Icons.task,
                 isSelected: true,
-                label: AppStrings.tasks,
+                label: context.tr(AppStrings.tasks),
               ),
             ),
             BottomNavigationBarItem(
               label: '',
               icon: _BottomBarItem(
-                icon: Icons.task,
+                icon: Icons.settings,
                 isSelected: false,
-                label: AppStrings.tasks,
+                label: context.tr(AppStrings.settings),
               ),
               activeIcon: _BottomBarItem(
-                icon: Icons.task,
+                icon: Icons.settings,
                 isSelected: true,
-                label: AppStrings.tasks,
+                label: context.tr(AppStrings.settings),
               ),
             ),
           ],
@@ -99,27 +101,18 @@ class _BottomBarItem extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Container(
-            padding: EdgeInsets.all(5.r),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: isSelected
-                  ? context.themeData.colorScheme.primaryContainer
-                  : Colors.transparent,
-            ),
-            child: Icon(
-              icon,
-              size: 18.h,
-              color: isSelected
-                  ? context.themeData.colorScheme.primary
-                  : context.themeData.colorScheme.secondaryFixed,
-            ),
+          Icon(
+            icon,
+            size: 18.h,
+            color: !isSelected
+                ? context.themeData.colorScheme.primary
+                : context.themeData.colorScheme.secondaryFixed,
           ),
           SizedBox(height: 4.h),
           Text(
             label,
             style: context.themeData.textTheme.bodySmall?.copyWith(
-              color: isSelected
+              color: !isSelected
                   ? context.themeData.colorScheme.primary
                   : context.themeData.colorScheme.secondaryFixed,
             ),

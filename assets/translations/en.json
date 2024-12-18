@@ -1,4 +1,17 @@
 {
+    "locale": "en",
+    "flag": "us",
+    "language": "English",
+    "supportedLanguages": {
+        "name": {
+            "en": "English",
+            "ru": "Russian"
+        },
+        "flags": {
+            "en": "us",
+            "ru": "ru"
+        }
+    },
     "tasks": "Tasks",
     "failToGetTasks": "Fail to get tasks",
     "add": "Add",
@@ -46,5 +59,6 @@
     "failToCreateComment": "Fail to create Comment",
     "failToUpdateComment": "Fail to update Comment",
     "failToDeleteComment": "Fail to delete Comment",
-    "failToGetComment": "Fail to get Comment"
+    "failToGetComment": "Fail to get Comment",
+    "settings": "Settings"
 }

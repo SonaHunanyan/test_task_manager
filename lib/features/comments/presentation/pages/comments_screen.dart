@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -80,7 +81,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                   CommentsError$FailToDelete() => AppStrings.failToDeletComment,
                 };
                 ScaffoldMessenger.of(context).showSnackBar(
-                  ErrorSnackBar(context, text: errorMessage),
+                  ErrorSnackBar(context, text: context.tr(errorMessage)),
                 );
                 return;
               }
@@ -95,7 +96,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
                     child: state.comments.isEmpty
                         ? Align(
                             child: Text(
-                              AppStrings.notFound,
+                              context.tr(AppStrings.notFound),
                               textAlign: TextAlign.center,
                               style: context.themeData.textTheme.bodyMedium
                                   ?.copyWith(

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,16 +33,16 @@ class _CreateProjectWidgetState extends State<CreateProjectWidget> {
       key: _formKey,
       child: IntrinsicHeight(
         child: ItemCreationWidget(
-          title: AppStrings.createProject,
+          title: context.tr(AppStrings.createProject),
           children: [
             PrimaryTextField(
-              placeholder: AppStrings.projectName,
-              validator: Validator.required,
+              placeholder: context.tr(AppStrings.projectName),
+              validator: (v) => Validator.required(context, v),
               controller: _nameController,
             ),
             SizedBox(height: 50.h),
             PrimaryButton(
-              title: AppStrings.create,
+              title: context.tr(AppStrings.create),
               onTap: () {
                 final isValid = _formKey.currentState?.validate() ?? false;
                 if (!isValid) {

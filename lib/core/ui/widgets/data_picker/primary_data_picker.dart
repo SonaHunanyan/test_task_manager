@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_task_manager/core/extenstions/theme_extenstion.dart';
@@ -17,12 +18,9 @@ class PrimaryDataPicker<T extends DataPickerOptions> extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 20.h),
       children: items.map((item) {
         return ListTile(
-          leading: Icon(
-            item.icon,
-            color: item.color(context),
-          ),
+          leading: item.icon(context),
           title: Text(
-            '$item',
+            context.tr(item.toString()),
             style: context.themeData.textTheme.bodyMedium?.copyWith(
               color: item.color(context),
             ),

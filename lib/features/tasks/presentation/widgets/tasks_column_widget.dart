@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_task_manager/core/constants/app_strings.dart';
@@ -60,7 +61,7 @@ class _TasksColumnWidgetState extends State<TasksColumnWidget> {
               top: 2.h,
             ),
             child: Text(
-              widget.columnType.title,
+              context.tr(widget.columnType.title),
               style: context.themeData.textTheme.bodyLarge?.copyWith(
                 color: context.themeData.colorScheme.onSurface,
               ),
@@ -73,7 +74,7 @@ class _TasksColumnWidgetState extends State<TasksColumnWidget> {
                 width: 178.h,
                 alignment: Alignment.center,
                 child: Text(
-                  AppStrings.notFound,
+                  context.tr(AppStrings.notFound),
                   textAlign: TextAlign.center,
                   style: context.themeData.textTheme.bodyMedium?.copyWith(
                     color: context.themeData.colorScheme.outlineVariant,

@@ -1,4 +1,17 @@
 {
+    "locale": "ru",
+    "flag": "ru",
+    "language": "Russian",
+    "supportedLanguages": {
+        "name": {
+            "en": "Английский",
+            "ru": "Русский"
+        },
+        "flags": {
+            "en": "us",
+            "ru": "ru"
+        }
+    },
     "tasks": "Задачи",
     "failToGetTasks": "Не удалось загрузить задачи",
     "add": "Добавить",
@@ -49,5 +62,6 @@
     "failToCreateComment": "Не удалось создать комментерий",
     "failToUpdateComment": "Не удалось обновить комментерий",
     "failToDeleteComment": "Не удалось удалить комментерий",
-    "failToGetComment": "Не удалось загрузить комментерий"
+    "failToGetComment": "Не удалось загрузить комментерий",
+    "settings": "Настройки"
 }

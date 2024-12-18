@@ -18,6 +18,7 @@ class AppRouter extends RootStackRouter {
               AutoRoute(page: CommentsRoute.page),
             ],
           ),
+          AutoRoute(page: SettinsRoute.page)
         ]),
       ];
 }

@@ -21,5 +21,8 @@ enum MainEntity with DataPickerOptions {
   Color? color(BuildContext context) => context.themeData.colorScheme.primary;
 
   @override
-  IconData? get icon => Icons.check_circle_outline;
+  Widget? icon(BuildContext context) => Icon(
+        Icons.check_circle_outline,
+        color: color(context),
+      );
 }

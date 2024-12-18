@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,11 +76,12 @@ class _TaskScreenState extends State<TaskScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 20.h),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                Wrap(
+                  spacing: 10.w,
+                  runSpacing: 10.h,
                   children: [
                     PrimaryButton(
-                      title: AppStrings.startTimer,
+                      title: context.tr(AppStrings.startTimer),
                       enabled: _task.due?.datetime == null,
                       onTap: () {
                         context.read<TasksBloc>().add(TaskEvent$UpdateDueTime(
@@ -89,7 +91,7 @@ class _TaskScreenState extends State<TaskScreen> {
                       },
                     ),
                     PrimaryButton(
-                      title: AppStrings.stopTimer,
+                      title: context.tr(AppStrings.stopTimer),
                       enabled: _task.due?.datetime != null,
                       onTap: () {
                         context.read<TasksBloc>().add(TaskEvent$UpdateDueTime(
@@ -102,8 +104,8 @@ class _TaskScreenState extends State<TaskScreen> {
                 ),
                 SizedBox(height: 20.h),
                 EditableTaskField(
-                  title: AppStrings.content,
-                  validator: Validator.required,
+                  title: context.tr(AppStrings.content),
+                  validator: (v) => Validator.required(context, v),
                   controller: _contentController,
                   onCancelEditing: () {
                     _contentController.text = _task.content;
@@ -115,8 +117,8 @@ class _TaskScreenState extends State<TaskScreen> {
                 ),
                 SizedBox(height: 20.h),
                 EditableTaskField(
-                  title: AppStrings.description,
-                  placeholder: AppStrings.enterDescription,
+                  title: context.tr(AppStrings.description),
+                  placeholder: context.tr(AppStrings.enterDescription),
                   controller: _descriptionController,
                   maxLines: null,
                   height: 100.h,
@@ -131,7 +133,7 @@ class _TaskScreenState extends State<TaskScreen> {
                 ),
                 SizedBox(height: 20.h),
                 Text(
-                  '${AppStrings.duration}: ${_task.realDuration.toDurationString()}',
+                  '${context.tr(AppStrings.duration)}: ${_task.realDuration.toDurationString(context)}',
                   style: context.themeData.textTheme.bodyLarge?.copyWith(
                     color: context.themeData.colorScheme.primary,
                   ),
@@ -146,17 +148,17 @@ class _TaskScreenState extends State<TaskScreen> {
 }
 
 extension on int {
-  String toDurationString() {
+  String toDurationString(BuildContext context) {
     final days = this ~/ (24 * 60);
     final hours = (this % (24 * 60)) ~/ 60;
     final minutes = this % 60;
 
     final parts = <String>[];
 
-    if (days > 0) parts.add(AppStrings.daysTime(days));
-    if (hours > 0) parts.add(AppStrings.hoursTime(hours));
+    if (days > 0) parts.add(context.tr(AppStrings.daysTime(days)));
+    if (hours > 0) parts.add(context.tr(AppStrings.hoursTime(hours)));
     if (minutes > 0 || parts.isEmpty) {
-      parts.add(AppStrings.minutesTime(minutes));
+      parts.add(context.tr(AppStrings.minutesTime(minutes)));
     }
 
     final result = parts.join(', ');
