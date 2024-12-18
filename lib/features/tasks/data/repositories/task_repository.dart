@@ -1,12 +1,21 @@
+import 'dart:convert';
+
 import 'package:rest_api/rest_api.dart';
+import 'package:storage/storage.dart';
+import 'package:test_task_manager/features/tasks/data/mappers/complete_task_mapper.dart';
 import 'package:test_task_manager/features/tasks/data/mappers/task_mapper.dart';
+import 'package:test_task_manager/features/tasks/domain/entities/complete_task.dart';
 import 'package:test_task_manager/features/tasks/domain/entities/task.dart';
 import 'package:test_task_manager/features/tasks/domain/entities/task_result.dart';
 import 'package:test_task_manager/features/tasks/domain/repositories/task_repository.dart';
 
 class TaskRepository implements ITaskRepository {
-  const TaskRepository(this._taskApi);
+  const TaskRepository(
+    this._taskApi, {
+    required this.store,
+  });
   final TaskApi _taskApi;
+  final Store store;
   @override
   Future<TaskResult<List<Task>>> getTasks() async {
     try {
@@ -88,6 +97,77 @@ class TaskRepository implements ITaskRepository {
 
       final task = TaskMapper.toTask(taskDto);
       return TaskResult$Success(data: task);
+    } catch (e, s) {
+      return TaskResult$Failure(e, s);
+    }
+  }
+
+  @override
+  Future<TaskResult<List<CompleteTask>>> getCompleteTasks() async {
+    try {
+      final tasksJson = store.valueByKey(StoreKeys.completeTasks);
+
+      if (tasksJson == null) return const TaskResult$Success(data: []);
+      final List<dynamic> decodedList = jsonDecode(tasksJson);
+      final tasks =
+          decodedList.map((json) => CompleteTaskMapper.fromJson(json)).toList();
+      return TaskResult$Success(data: tasks);
+    } catch (e, s) {
+      return TaskResult$Failure(e, s);
+    }
+  }
+
+  Future<void> _addCompleteTask({required CompleteTask completeTask}) async {
+    final tasksResult = await getCompleteTasks();
+    switch (tasksResult) {
+      case TaskResult$Success<List<CompleteTask>>():
+        final tasks = [...tasksResult.data, completeTask];
+        await _saveCompleteTasks(tasks);
+      case TaskResult$Failure<List<CompleteTask>>():
+        throw Exception(tasksResult.error);
+    }
+  }
+
+  Future<void> _removeCompleteTask({required String taskId}) async {
+    final tasksResult = await getCompleteTasks();
+    switch (tasksResult) {
+      case TaskResult$Success<List<CompleteTask>>():
+        final tasks = tasksResult.data..removeWhere((e) => e.taskId == taskId);
+        await _saveCompleteTasks(tasks);
+      case TaskResult$Failure<List<CompleteTask>>():
+        throw Exception(tasksResult.error);
+    }
+  }
+
+  Future<void> _saveCompleteTasks(List<CompleteTask> tasks) async {
+    final tasksJson = jsonEncode(
+        tasks.map((task) => CompleteTaskMapper.toJson(task)).toList());
+
+    await store.setString(StoreKeys.completeTasks, tasksJson);
+  }
+
+  @override
+  Future<TaskResult<void>> completeTask({
+    required String id,
+    required int timestamp,
+  }) async {
+    try {
+      await _addCompleteTask(
+          completeTask: CompleteTask(
+        completeTimestamp: timestamp,
+        taskId: id,
+      ));
+      return const TaskResult$Success(data: null);
+    } catch (e, s) {
+      return TaskResult$Failure(e, s);
+    }
+  }
+
+  @override
+  Future<TaskResult<void>> reopenTask({required String id}) async {
+    try {
+      await _removeCompleteTask(taskId: id);
+      return const TaskResult$Success(data: null);
     } catch (e, s) {
       return TaskResult$Failure(e, s);
     }

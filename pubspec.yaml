@@ -13,6 +13,8 @@ dependencies:
 
   rest_api:
     path: packages/rest_api
+  storage:
+    path: packages/storage
 
   cupertino_icons: ^1.0.8
   auto_route: ^9.2.2
@@ -23,6 +25,7 @@ dependencies:
   equatable: ^2.0.7
   dotted_border: ^2.1.0
   loading_animation_widget: ^1.3.0
+  collection: ^1.18.0
 
 
 dev_dependencies:

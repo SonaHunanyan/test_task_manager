@@ -10,6 +10,7 @@ import 'package:test_task_manager/core/router/app_router.gr.dart';
 import 'package:test_task_manager/features/tasks/domain/entities/task.dart';
 import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_bloc.dart';
 import 'package:test_task_manager/features/tasks/presentation/bloc/tasks_event.dart';
+import 'package:collection/collection.dart';
 
 class TaskCard extends StatefulWidget {
   const TaskCard({
@@ -91,6 +92,12 @@ class _CardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final completeTimeStamp = context
+        .read<TasksBloc>()
+        .state
+        .completeTasks
+        .firstWhereOrNull((e) => e.taskId == task.id)
+        ?.completeTimestamp;
     return Padding(
       padding: EdgeInsets.only(bottom: 8.h),
       child: GestureDetector(
@@ -129,6 +136,13 @@ class _CardView extends StatelessWidget {
                       color: context.themeData.colorScheme.secondary
                           .withOpacity(0.2),
                     ),
+                  ),
+                ),
+              if (completeTimeStamp != null && task.priority == 3)
+                Text(
+                  'Completed at ${completeTimeStamp.toHistoryFormat()}',
+                  style: context.themeData.textTheme.bodySmall?.copyWith(
+                    color: context.themeData.colorScheme.error,
                   ),
                 ),
               Row(

@@ -46,3 +46,18 @@ class TasksEvent$IncreaseCommentsCount extends TasksEvent {
   const TasksEvent$IncreaseCommentsCount({required this.taskId});
   final String taskId;
 }
+
+class TasksEvent$GetCompleteTasks extends TasksEvent {
+  const TasksEvent$GetCompleteTasks();
+}
+
+class TasksEvent$UpdateCompleteStatus extends TasksEvent {
+  const TasksEvent$UpdateCompleteStatus({
+    required this.prevPriority,
+    required this.priority,
+    required this.taskId,
+  });
+  final int priority;
+  final int prevPriority;
+  final String taskId;
+}

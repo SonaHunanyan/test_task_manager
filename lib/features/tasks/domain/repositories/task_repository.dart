@@ -1,3 +1,4 @@
+import 'package:test_task_manager/features/tasks/domain/entities/complete_task.dart';
 import 'package:test_task_manager/features/tasks/domain/entities/task.dart';
 import 'package:test_task_manager/features/tasks/domain/entities/task_result.dart';
 
@@ -27,4 +28,11 @@ abstract interface class ITaskRepository {
     required DateTime? prevDueTime,
     required int? prevDuration,
   });
+
+  Future<TaskResult<List<CompleteTask>>> getCompleteTasks();
+  Future<TaskResult<void>> completeTask({
+    required String id,
+    required int timestamp,
+  });
+  Future<TaskResult<void>> reopenTask({required String id});
 }
