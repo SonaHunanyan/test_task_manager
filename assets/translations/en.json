@@ -60,5 +60,8 @@
     "failToUpdateComment": "Fail to update Comment",
     "failToDeleteComment": "Fail to delete Comment",
     "failToGetComment": "Fail to get Comment",
-    "settings": "Settings"
+    "settings": "Settings",
+    "failToGetTheme": "Fail to get theme",
+    "failToSetTheme": "Fail to set theme",
+    "darkMode": "Dark mode"
 }

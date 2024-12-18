@@ -106,7 +106,7 @@ class _BottomBarItem extends StatelessWidget {
             size: 18.h,
             color: !isSelected
                 ? context.themeData.colorScheme.primary
-                : context.themeData.colorScheme.secondaryFixed,
+                : context.themeData.colorScheme.secondary,
           ),
           SizedBox(height: 4.h),
           Text(
@@ -114,7 +114,7 @@ class _BottomBarItem extends StatelessWidget {
             style: context.themeData.textTheme.bodySmall?.copyWith(
               color: !isSelected
                   ? context.themeData.colorScheme.primary
-                  : context.themeData.colorScheme.secondaryFixed,
+                  : context.themeData.colorScheme.secondary,
             ),
           )
         ],

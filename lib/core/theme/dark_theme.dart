@@ -9,6 +9,7 @@ final darkTheme = base.copyWith(
   colorScheme: const ColorScheme.dark(
     onSurface: AppColors.backgroundDark,
     secondary: AppColors.secondary,
+    secondaryFixed: AppColors.whitePurple,
     primaryContainer: AppColors.detailColor,
     primary: Colors.white,
     outline: AppColors.blackPurple,
@@ -27,6 +28,7 @@ final darkTheme = base.copyWith(
   secondaryHeaderColor: AppColors.queueBlue,
   primaryColor: AppColors.inProgressGold,
   primaryColorDark: AppColors.doneGreen,
+  disabledColor: AppColors.detailColor,
 
   /// Text theme
   textTheme: base.primaryTextTheme.copyWith(

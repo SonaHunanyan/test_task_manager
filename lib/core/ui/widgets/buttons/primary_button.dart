@@ -42,14 +42,14 @@ class PrimaryButton extends StatelessWidget {
                   width: height - 12,
                   height: height - 12,
                   child: CircularProgressIndicator(
-                    color: context.themeData.colorScheme.primaryContainer,
+                    color: context.themeData.colorScheme.primary,
                     strokeWidth: 2,
                   ),
                 )
               : Text(
                   title,
                   style: context.themeData.textTheme.bodyMedium?.copyWith(
-                    color: context.themeData.colorScheme.primaryContainer,
+                    color: context.themeData.colorScheme.primary,
                   ),
                 ),
         ),

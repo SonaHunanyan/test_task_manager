@@ -47,4 +47,7 @@ class AppStrings {
   static const supportedLanguages = 'supportedLanguages.name';
   static const supportedFalgs = 'supportedLanguages.flags';
   static const flag = 'flag';
+  static const failToGetTheme = 'failToGetTheme';
+  static const failToSetTheme = 'failToSetTheme';
+  static const darkMode = 'darkMode';
 }

@@ -9,6 +9,7 @@ final lightTheme = base.copyWith(
   colorScheme: const ColorScheme.light(
     onSurface: AppColors.backgroundLight,
     secondary: AppColors.secondary,
+    secondaryFixed: AppColors.whitePurple,
     primaryContainer: Colors.white,
     primary: AppColors.mail,
     outline: AppColors.strokColor,
@@ -24,6 +25,7 @@ final lightTheme = base.copyWith(
   secondaryHeaderColor: AppColors.queueBlue,
   primaryColor: AppColors.inProgressGold,
   primaryColorDark: AppColors.doneGreen,
+  disabledColor: AppColors.switcherTrack,
 
   /// Text theme
   textTheme: base.primaryTextTheme.copyWith(

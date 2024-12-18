@@ -63,5 +63,8 @@
     "failToUpdateComment": "Не удалось обновить комментерий",
     "failToDeleteComment": "Не удалось удалить комментерий",
     "failToGetComment": "Не удалось загрузить комментерий",
-    "settings": "Настройки"
+    "settings": "Настройки",
+    "failToGetTheme": "Не удалось получить тему",
+    "failToSetTheme": "Не удалось установить тему",
+    "darkMode": "Темный режим"
 }

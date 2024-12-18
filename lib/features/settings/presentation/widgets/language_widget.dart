@@ -5,7 +5,7 @@ import 'package:test_task_manager/core/constants/app_strings.dart';
 import 'package:test_task_manager/core/extenstions/string_extension.dart';
 import 'package:test_task_manager/core/extenstions/theme_extenstion.dart';
 import 'package:test_task_manager/core/ui/widgets/data_picker/primary_data_picker.dart';
-import 'package:test_task_manager/features/home/presentation/model/languages.dart';
+import 'package:test_task_manager/features/settings/presentation/model/languages.dart';
 
 class LanguageWidget extends StatelessWidget {
   const LanguageWidget({super.key});

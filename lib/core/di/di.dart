@@ -4,6 +4,8 @@ import 'package:storage/storage.dart';
 import 'package:test_task_manager/core/constants/constants.dart';
 import 'package:test_task_manager/features/comments/data/repositories/comment_repository.dart';
 import 'package:test_task_manager/features/comments/domain/repositories/comment_repository.dart';
+import 'package:test_task_manager/features/settings/data/repositories/theme_repository.dart';
+import 'package:test_task_manager/features/settings/domain/repositories/theme_repository.dart';
 import 'package:test_task_manager/features/projects/data/repositories/project_repository.dart';
 import 'package:test_task_manager/features/projects/domain/repositories/project_repository.dart';
 import 'package:test_task_manager/features/tasks/data/repositories/task_repository.dart';
@@ -21,4 +23,5 @@ void setupDependencies() {
       ProjectRepository(restApi.projectApi));
   GetIt.I.registerSingleton<ICommentRepository>(
       CommentRepository(restApi.commentApi));
+  GetIt.I.registerSingleton<IThemeRepository>(ThemeRepository(store));
 }

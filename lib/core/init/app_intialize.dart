@@ -9,8 +9,11 @@ import 'package:test_task_manager/core/constants/constants.dart';
 import 'package:test_task_manager/core/constants/localization.dart';
 import 'package:test_task_manager/core/di/di.dart';
 import 'package:test_task_manager/core/router/app_router.dart';
-import 'package:test_task_manager/core/theme/light_theme.dart';
 import 'package:test_task_manager/core/utils/bloc_observer.dart';
+import 'package:test_task_manager/features/settings/domain/repositories/theme_repository.dart';
+import 'package:test_task_manager/features/settings/presentation/bloc/theme_bloc.dart';
+import 'package:test_task_manager/features/settings/presentation/bloc/theme_state.dart';
+import 'package:test_task_manager/features/settings/presentation/model/theme.dart';
 
 class AppIntialize {
   static Future<void> execute() async {
@@ -37,19 +40,25 @@ class TaskManagerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final router = AppRouter();
-    return ScreenUtilInit(
-      designSize: const Size(375, 813),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      useInheritedMediaQuery: true,
-      builder: (_, __) => MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        scrollBehavior: const ScrollBehavior().copyWith(overscroll: false),
-        theme: lightTheme,
-        locale: context.locale,
-        supportedLocales: context.supportedLocales,
-        localizationsDelegates: context.localizationDelegates,
-        routerConfig: router.config(),
+    return BlocProvider<ThemeBloc>(
+      create: (context) =>
+          ThemeBloc(themeRepository: GetIt.I.get<IThemeRepository>()),
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) => ScreenUtilInit(
+          designSize: const Size(375, 813),
+          minTextAdapt: true,
+          splitScreenMode: true,
+          useInheritedMediaQuery: true,
+          builder: (_, __) => MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            scrollBehavior: const ScrollBehavior().copyWith(overscroll: false),
+            theme: state.themeType.themeData,
+            locale: context.locale,
+            supportedLocales: context.supportedLocales,
+            localizationsDelegates: context.localizationDelegates,
+            routerConfig: router.config(),
+          ),
+        ),
       ),
     );
   }
