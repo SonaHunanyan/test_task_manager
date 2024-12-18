@@ -68,6 +68,8 @@ class CommentsBloc extends Bloc<CommentsEvent, CommentsState> {
     );
     switch (commentResult) {
       case CommentResult$Success<Comment>():
+        final index = state.comments.indexWhere((e) => e.id == tempComment.id);
+        state.comments[index] = commentResult.data;
         emit(CommentsState$Created(comments: state.comments));
       case CommentResult$Failure<Comment>():
         state.comments.remove(tempComment);
