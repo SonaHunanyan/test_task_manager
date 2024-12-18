@@ -16,6 +16,7 @@ final lightTheme = base.copyWith(
     onPrimary: AppColors.mail,
     tertiary: Colors.white,
     scrim: Colors.grey,
+    surfaceBright: Colors.white,
     error: Colors.red,
     onSurfaceVariant: AppColors.longTextColor,
     outlineVariant: AppColors.darkSecondaryText,

@@ -18,6 +18,7 @@ final darkTheme = base.copyWith(
     surfaceTint: AppColors.backgroundDark,
     scrim: AppColors.backgroundDark,
     error: Colors.red,
+    surfaceBright: Colors.white,
     onSurfaceVariant: Color(0xffA6A6A6),
     onPrimaryContainer: AppColors.mail,
     outlineVariant: AppColors.darkSecondaryText,
