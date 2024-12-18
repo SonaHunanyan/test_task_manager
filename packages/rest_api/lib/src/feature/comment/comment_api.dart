@@ -46,6 +46,6 @@ class CommentApi {
   Future<void> deleteComment({
     required String commentId,
   }) async {
-    await _client.post<dynamic>('${Paths.comments}/$commentId');
+    await _client.delete<dynamic>('${Paths.comments}/$commentId');
   }
 }
